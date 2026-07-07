@@ -12,105 +12,6 @@
 <meta property="og:title" content="Le Touareg | Tacos · Kebab · Burgers — Montereau (77130)"/>
 <meta property="og:description" content="Le meilleur fast food de Montereau. Commandez via WhatsApp, on prépare. Ouvert 7j/7 · 11h–23h."/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FastFoodRestaurant","name":"Le Touareg","url":"https://letouareg.fr","description":"Restaurant de street food à Montereau-Fault-Yonne : tacos, kebab, burgers, pizzas. Livraison et à emporter 11h-23h.","address":{"@type":"PostalAddress","streetAddress":"11 Bis Place Diderot","addressLocality":"Montereau-Fault-Yonne","postalCode":"77130","addressCountry":"FR"},"geo":{"@type":"GeoCoordinates","latitude":48.3838,"longitude":2.8534},"telephone":"+33164248754","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"11:00","closes":"23:00"}],"servesCuisine":["Tacos","Kebab","Burger","Pizza","Street Food"],"priceRange":"€–€€","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.1","reviewCount":"109","bestRating":"5"}}
-/* ══════════════════════════════════════════════
-   PRODUCT CARD IMAGES — patch v3
-   Photo par catégorie + fallback emoji
-══════════════════════════════════════════════ */
-const CATEGORY_PHOTOS = {
-  'menus-tacos':     'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=400&q=80',
-  'menus-sandwiches':'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=400&q=80',
-  'menus-burgers':   'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80',
-  'menus-chicken':   'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=400&q=80',
-  'tacos':           'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=400&q=80',
-  'sandwiches':      'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=400&q=80',
-  'burgers':         'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80',
-  'chicken':         'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=400&q=80',
-  'pizzas':          'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80',
-  'assiettes':       'https://images.unsplash.com/photo-1544025162-d76538580dc5?auto=format&fit=crop&w=400&q=80',
-  'paninis':         'https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=400&q=80',
-  'tacos-box':       'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=400&q=80',
-  'sides':           'https://images.unsplash.com/photo-1576107232684-1279f98b4fb1?auto=format&fit=crop&w=400&q=80',
-  'supplements':     'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=400&q=80',
-  'desserts':        'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=400&q=80',
-  'boissons':        'https://images.unsplash.com/photo-1614028674026-a65e31bfd27c?auto=format&fit=crop&w=400&q=80',
-  'boissons-chaudes':'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80',
-  'menus-enfants':   'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80',
-  'formules':        'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=400&q=80',
-};
-
-/* Remplace renderProducts — version avec photos */
-function renderProducts() {
-  const grid  = document.getElementById('productsGrid');
-  const empty = document.getElementById('menuEmpty');
-  const term  = document.getElementById('emptySearchTerm');
-  if (!grid) return;
-
-  let filtered = PRODUCTS;
-  if (activeFilter !== 'all') filtered = filtered.filter(p => p.cat === activeFilter);
-  if (activeSearch) {
-    const q = activeSearch.toLowerCase();
-    filtered = filtered.filter(p =>
-      p.name.toLowerCase().includes(q) ||
-      (p.desc || '').toLowerCase().includes(q) ||
-      (CATEGORIES.find(c => c.id === p.cat)?.label || '').toLowerCase().includes(q)
-    );
-  }
-
-  if (!filtered.length) {
-    grid.innerHTML = '';
-    if (empty) { empty.hidden = false; if (term) term.textContent = activeSearch || activeFilter; }
-    return;
-  }
-  if (empty) empty.hidden = true;
-
-  const PLUS = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>';
-
-  grid.innerHTML = filtered.map((p, i) => {
-    const photo = CATEGORY_PHOTOS[p.cat] || '';
-    const badge = getProductBadge(p);
-
-    const vis = photo
-      ? '<div class="product-vis">' +
-          '<img class="product-vis-img" src="' + photo + '" alt="' + p.name + '" loading="lazy" onerror="this.hidden=true"/>' +
-          '<div class="product-vis-overlay"></div>' +
-          '<span class="product-vis-emoji" aria-hidden="true">' + p.emoji + '</span>' +
-          badge +
-        '</div>'
-      : '<div class="product-vis"><div class="product-vis-fb">' + p.emoji + '</div>' + badge + '</div>';
-
-    return '<article class="product-card" data-id="' + p.id + '"' +
-      ' style="animation-delay:' + Math.min(i * 28, 280) + 'ms"' +
-      ' tabindex="0" role="button"' +
-      ' aria-label="' + p.name + ' — ' + formatPrice(p.price) + '">' +
-      vis +
-      '<div class="product-body">' +
-        '<h3 class="product-name">' + p.name + '</h3>' +
-        '<p class="product-desc">' + (p.desc || '') + '</p>' +
-        '<div class="product-footer">' +
-          '<span class="product-price">' + formatPrice(p.price) + '</span>' +
-          '<button class="product-add" data-id="' + p.id + '" aria-label="Ajouter ' + p.name + '">' +
-            PLUS + ' Ajouter' +
-          '</button>' +
-        '</div>' +
-      '</div>' +
-    '</article>';
-  }).join('');
-
-  grid.querySelectorAll('.product-card').forEach(card => {
-    const handleAdd = () => {
-      const p = PRODUCTS.find(x => x.id === +card.dataset.id);
-      if (!p) return;
-      if (p.config) openConfigurator(p);
-      else { addToCart(p); openCart(); }
-    };
-    card.querySelector('.product-add').addEventListener('click', e => { e.stopPropagation(); handleAdd(); });
-    card.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleAdd(); }
-    });
-    if (window.innerWidth >= 1024 && typeof init3DTilt === 'function') init3DTilt(card);
-  });
-}
-
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -241,7 +142,10 @@ address { font-style:normal; }
 .cart-items { display:flex; flex-direction:column; gap:.75rem; }
 .cart-item { display:flex; align-items:center; gap:.75rem; padding:1rem; background:var(--surface); border-radius:var(--r-md); border:1px solid var(--border); animation:slideIn .22s var(--ease-o); }
 @keyframes slideIn { from { opacity:0; transform:translateX(16px); } to { opacity:1; transform:translateX(0); } }
-.cart-item-emoji { font-size:1.6rem; width:44px; height:44px; display:flex; align-items:center; justify-content:center; background:var(--surface-2); border-radius:var(--r-sm); flex-shrink:0; }
+.cart-item-emoji { font-size:1.6rem; width:44px; height:44px; display:flex; align-items:center; justify-content:center; background:var(--surface-2); border-radius:var(--r-sm); flex-shrink:0; overflow:hidden; position:relative; }
+.cart-item-emoji img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+.cart-item-emoji span { position:relative; z-index:1; font-size:.85rem; filter:drop-shadow(0 1px 3px rgba(0,0,0,.9)); }
+.cart-item-emoji.has-photo span { position:absolute; bottom:-2px; right:-2px; }
 .cart-item-info { flex:1; min-width:0; }
 .cart-item-name { font-size:.875rem; font-weight:700; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:2px; }
 .cart-item-price { font-size:.875rem; font-weight:700; color:var(--orange); }
@@ -408,6 +312,7 @@ address { font-style:normal; }
 .product-vis-overlay { position:absolute; inset:0; background:linear-gradient(to bottom,transparent 20%,rgba(0,0,0,.62)); z-index:1; }
 .product-vis-emoji { position:absolute; bottom:8px; right:10px; font-size:1.9rem; z-index:2; filter:drop-shadow(0 2px 8px rgba(0,0,0,.95)); line-height:1; }
 .product-vis-fb { display:flex; align-items:center; justify-content:center; height:100%; font-size:2.4rem; }
+.product-vis-fallback .product-vis-emoji { position:static; display:flex; align-items:center; justify-content:center; height:100%; font-size:2.4rem; filter:none; }
 .product-pop-badge { position:absolute; top:.5rem; left:calc(.5rem + 4px); font-size:9px; font-weight:900; letter-spacing:.07em; text-transform:uppercase; padding:3px 8px; border-radius:var(--r-f); color:#fff; }
 .badge-pop { background:var(--red); }
 .badge-sig { background:#7C3AED; }
@@ -1055,6 +960,33 @@ const PRODUCTS = [
 ];
 
 /* ═══════════════════════════════════════════════════
+   PHOTOS PAR CATÉGORIE
+   Une photo par famille de plats, utilisée sur les
+   cartes du menu ET dans le panier
+═══════════════════════════════════════════════════ */
+const CATEGORY_PHOTOS = {
+  'menus-tacos':      'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=400&q=80',
+  'menus-sandwiches': 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=400&q=80',
+  'menus-burgers':    'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80',
+  'menus-chicken':    'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=400&q=80',
+  'tacos':            'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=400&q=80',
+  'sandwiches':       'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=400&q=80',
+  'burgers':          'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80',
+  'chicken':          'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=400&q=80',
+  'pizzas':           'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80',
+  'assiettes':        'https://images.unsplash.com/photo-1544025162-d76538580dc5?auto=format&fit=crop&w=400&q=80',
+  'paninis':          'https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=400&q=80',
+  'tacos-box':        'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=400&q=80',
+  'sides':            'https://images.unsplash.com/photo-1576107232684-1279f98b4fb1?auto=format&fit=crop&w=400&q=80',
+  'supplements':      'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=400&q=80',
+  'desserts':         'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=400&q=80',
+  'boissons':         'https://images.unsplash.com/photo-1614028674026-a65e31bfd27c?auto=format&fit=crop&w=400&q=80',
+  'boissons-chaudes': 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80',
+  'menus-enfants':    'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80',
+  'formules':         'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=400&q=80',
+};
+
+/* ═══════════════════════════════════════════════════
    ÉTAT DU PANIER
 ═══════════════════════════════════════════════════ */
 let cart = {}; // clé → { product, qty, config, name, price }
@@ -1189,9 +1121,13 @@ function renderCart() {
 
   items.innerHTML = keys.map(key => {
     const { product, name, qty, unitPrice } = cart[key];
+    const photo = CATEGORY_PHOTOS[product.cat] || '';
+    const thumb = photo
+      ? `<div class="cart-item-emoji has-photo" aria-hidden="true"><img src="${photo}" alt="" loading="lazy" onerror="const el=this.parentElement; this.remove(); if(el) el.classList.remove('has-photo');"/><span>${product.emoji}</span></div>`
+      : `<div class="cart-item-emoji" aria-hidden="true"><span>${product.emoji}</span></div>`;
     return `
       <li class="cart-item" data-key="${key}">
-        <div class="cart-item-emoji" aria-hidden="true">${product.emoji}</div>
+        ${thumb}
         <div class="cart-item-info">
           <div class="cart-item-name" title="${name}">${name}</div>
           <div class="cart-item-price">${formatPrice(unitPrice * qty)}</div>
@@ -1521,12 +1457,22 @@ function renderProducts() {
   }
   if (empty) empty.hidden = true;
 
-  grid.innerHTML = filtered.map((p, i) => `
+  grid.innerHTML = filtered.map((p, i) => {
+    const photo = CATEGORY_PHOTOS[p.cat] || '';
+    const visual = photo
+      ? `<div class="product-vis">
+           <img class="product-vis-img" src="${photo}" alt="${p.name}" loading="lazy" onerror="const el=this.parentElement; this.remove(); if(el) el.classList.add('product-vis-fallback');"/>
+           <div class="product-vis-overlay"></div>
+           <span class="product-vis-emoji" aria-hidden="true">${p.emoji}</span>
+           ${getProductBadge(p)}
+         </div>`
+      : `<div class="product-vis">
+           <div class="product-vis-fb">${p.emoji}</div>
+           ${getProductBadge(p)}
+         </div>`;
+    return `
     <article class="product-card" data-id="${p.id}" style="animation-delay:${Math.min(i * 30, 300)}ms" tabindex="0" role="button" aria-label="${p.name} — ${formatPrice(p.price)}">
-      <div class="product-card-visual" aria-hidden="true">
-        ${p.emoji}
-        ${getProductBadge(p)}
-      </div>
+      ${visual}
       <div class="product-card-body">
         <h3 class="product-card-name">${p.name}</h3>
         <p class="product-card-desc">${p.desc || ''}</p>
@@ -1538,7 +1484,8 @@ function renderProducts() {
           </button>
         </div>
       </div>
-    </article>`).join('');
+    </article>`;
+  }).join('');
 
   grid.querySelectorAll('.product-card').forEach(card => {
     const handleAdd = () => {
@@ -2169,7 +2116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mode = document.querySelector('input[name="orderMode"]:checked')?.value;
     const addr = document.getElementById('customerAddress')?.value.trim();
     if (mode === 'livraison' && !addr) { showToast('⚠️ Indiquez votre adresse'); document.getElementById('customerAddress')?.focus(); return; }
-    window.open('https://wa.me/33763676191?text=' + encodeURIComponent(buildOrderMessage()), '_blank', 'noopener');
+    window.open('https://wa.me/33164248754?text=' + encodeURIComponent(buildOrderMessage()), '_blank', 'noopener');
   });
   document.getElementById('goToMenuBtn')?.addEventListener('click', () => {
     closeCart(); setTimeout(() => document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' }), 200);
