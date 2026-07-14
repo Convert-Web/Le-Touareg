@@ -2168,7 +2168,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mode = document.querySelector('input[name="orderMode"]:checked')?.value;
     const addr = document.getElementById('customerAddress')?.value.trim();
     if (mode === 'livraison' && !addr) { showToast('⚠️ Indiquez votre adresse'); document.getElementById('customerAddress')?.focus(); return; }
-    window.open('https://wa.me/33164248754?text=' + encodeURIComponent(buildOrderMessage()), '_blank', 'noopener');
+    window.open('https://wa.me/330763676191?text=' + encodeURIComponent(buildOrderMessage()), '_blank', 'noopener');
   });
   document.getElementById('goToMenuBtn')?.addEventListener('click', () => {
     closeCart(); setTimeout(() => document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' }), 200);
