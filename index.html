@@ -809,6 +809,7 @@ const REVIEWS = [
 ═══════════════════════════════════════════════════ */
 const VIANDES = ['Kebab','Viande hachée','Poulet mariné','Merguez','Kefta','Brochette d\'agneau'];
 const SAUCES  = ['Fromagère maison','Sauce blanche','Harissa','Ketchup','Algérienne','Samouraï','Cocktail'];
+const BOISSONS = ['Coca-Cola','Pepsi','Thé Glacé Lipton','Sans boisson'];
 const SUPPLEMENTS = [
   { name:'Emmental',   price:0.80 },
   { name:'Oeuf',       price:0.80 },
@@ -816,13 +817,18 @@ const SUPPLEMENTS = [
   { name:'Lardons',    price:1.20 },
   { name:'Champignons', price:1.00 },
 ];
+/* viandes:0 = recette fixe (le nom du plat impose déjà la viande), pas de bloc "viande" affiché.
+   Le choix de boisson est décidé produit par produit via product.menu:true (voir plus bas),
+   pas ici : une même règle (ex. 'sandwich') est partagée par des Menus et des produits seuls,
+   qui n'ont pas droit à la boisson incluse au même prix. */
 const CONFIG_RULES = {
-  'tacos-l':  { viandes:1, label:'1 viande au choix' },
-  'tacos-xl': { viandes:2, label:'2 viandes au choix' },
-  'mixte':    { viandes:4, label:'4 viandes au choix' },
-  'sandwich': { viandes:1, label:'1 viande au choix' },
-  'sandwich2':{ viandes:2, label:'2 viandes au choix' },
-  'panini':   { viandes:1, label:'1 viande au choix' },
+  'tacos-l':   { viandes:1, label:'1 viande au choix' },
+  'tacos-xl':  { viandes:2, label:'2 viandes au choix' },
+  'mixte':     { viandes:4, label:'4 viandes au choix' },
+  'sandwich':  { viandes:1, label:'1 viande au choix' },
+  'sandwich2': { viandes:2, label:'2 viandes au choix' },
+  'panini':    { viandes:1, label:'1 viande au choix' },
+  'menu-fixe': { viandes:0, label:'' },
 };
 
 /* ═══════════════════════════════════════════════════
@@ -856,50 +862,50 @@ const CATEGORIES = [
 const PRODUCTS = [
 
   /* ── MENUS SANDWICHS ── */
-  { id:1,  name:'Menu Sandwich Kebab',          desc:'Kebab de viande, salade, tomates et oignons',                price:10.40, cat:'menus-sandwiches', emoji:'🥙' },
-  { id:2,  name:'Menu Sandwich Poulet Curry',   desc:'Poulet mariné, sauce curry et fromage',                      price:10.40, cat:'menus-sandwiches', emoji:'🥙' },
-  { id:3,  name:'Menu Sandwich Paprika',        desc:'Poulet mariné, paprika et crème fraîche',                    price:10.40, cat:'menus-sandwiches', emoji:'🥙' },
-  { id:4,  name:'Menu Sandwich Mixte',          desc:'2 viandes au choix et fromage',                              price:10.40, cat:'menus-sandwiches', emoji:'🥙', config:'sandwich2' },
-  { id:5,  name:'Menu Sandwich Cordon Bleu',    desc:'Poulet mariné, sauce curry et fromage',                      price:8.45,  cat:'menus-sandwiches', emoji:'🥙' },
-  { id:6,  name:'Menu Sandwich Double Crocodile',desc:'2 steaks 45 g, cordon bleu et fromage',                     price:10.40, cat:'menus-sandwiches', emoji:'🥙' },
-  { id:7,  name:'Menu Sandwich Boursin',        desc:'Poulet mariné, sauce curry et fromage',                      price:10.40, cat:'menus-sandwiches', emoji:'🥙' },
-  { id:8,  name:'Menu Sandwich Shempa',         desc:'Poulet, crème fraîche, fromage râpé et champignons',         price:10.40, cat:'menus-sandwiches', emoji:'🥙' },
-  { id:9,  name:'Menu Sandwich Touareg',        desc:'Steak viande hachée, œuf, fromage, olives, oignons et tomates', price:10.40, cat:'menus-sandwiches', emoji:'🥙' },
-  { id:10, name:'Menu Sandwich Kefta',          desc:'2 steaks, viande hachée et fromage',                         price:10.40, cat:'menus-sandwiches', emoji:'🥙' },
-  { id:11, name:'Menu Sandwich Brochette d\'Agneau', desc:'Brochette d\'agneau et fromage',                        price:10.40, cat:'menus-sandwiches', emoji:'🥙' },
-  { id:12, name:'Menu Sandwich Américain',      desc:'2 steaks 45 g, œuf et fromage',                              price:10.40, cat:'menus-sandwiches', emoji:'🥙', popular:true },
-  { id:13, name:'Menu Sandwich Forma',          desc:'Viande au choix, crème fraîche, fromage râpé, lardons, œuf', price:11.05, cat:'menus-sandwiches', emoji:'🥙', config:'sandwich' },
-  { id:14, name:'Menu Sandwich Zinger Rolo',    desc:'Pita poulet façon KFC, bacon de dinde, steak 45 g et fromage', price:11.05, cat:'menus-sandwiches', emoji:'🥙' },
-  { id:15, name:'Menu Sandwich Spécial',        desc:'Pita, viande marinée au choix, oignons frits et cordon bleu', price:11.05, cat:'menus-sandwiches', emoji:'🥙', config:'sandwich' },
+  { id:1,  name:'Menu Sandwich Kebab',          desc:'Kebab de viande, salade, tomates et oignons',                price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:2,  name:'Menu Sandwich Poulet Curry',   desc:'Poulet mariné, sauce curry et fromage',                      price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:3,  name:'Menu Sandwich Paprika',        desc:'Poulet mariné, paprika et crème fraîche',                    price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:4,  name:'Menu Sandwich Mixte',          desc:'2 viandes au choix et fromage',                              price:10.40, cat:'menus-sandwiches', emoji:'🥙', config:'sandwich2', menu:true },
+  { id:5,  name:'Menu Sandwich Cordon Bleu',    desc:'Poulet mariné, sauce curry et fromage',                      price:8.45,  cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:6,  name:'Menu Sandwich Double Crocodile',desc:'2 steaks 45 g, cordon bleu et fromage',                     price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:7,  name:'Menu Sandwich Boursin',        desc:'Poulet mariné, sauce curry et fromage',                      price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:8,  name:'Menu Sandwich Shempa',         desc:'Poulet, crème fraîche, fromage râpé et champignons',         price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:9,  name:'Menu Sandwich Touareg',        desc:'Steak viande hachée, œuf, fromage, olives, oignons et tomates', price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:10, name:'Menu Sandwich Kefta',          desc:'2 steaks, viande hachée et fromage',                         price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:11, name:'Menu Sandwich Brochette d\'Agneau', desc:'Brochette d\'agneau et fromage',                        price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:12, name:'Menu Sandwich Américain',      desc:'2 steaks 45 g, œuf et fromage',                              price:10.40, cat:'menus-sandwiches', emoji:'🥙', popular:true , config:'menu-fixe', menu:true },
+  { id:13, name:'Menu Sandwich Forma',          desc:'Viande au choix, crème fraîche, fromage râpé, lardons, œuf', price:11.05, cat:'menus-sandwiches', emoji:'🥙', config:'sandwich', menu:true },
+  { id:14, name:'Menu Sandwich Zinger Rolo',    desc:'Pita poulet façon KFC, bacon de dinde, steak 45 g et fromage', price:11.05, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:15, name:'Menu Sandwich Spécial',        desc:'Pita, viande marinée au choix, oignons frits et cordon bleu', price:11.05, cat:'menus-sandwiches', emoji:'🥙', config:'sandwich', menu:true },
 
   /* ── MENUS PANINIS ── */
-  { id:16, name:'Menu Panini Thon',      desc:'Panini grillé garni de thon',                    price:8.45, cat:'menus-paninis', emoji:'🥪' },
-  { id:17, name:'Menu Panini Fromage',   desc:'Panini garni de fromage fondu',                  price:8.45, cat:'menus-paninis', emoji:'🥪', popular:true },
-  { id:18, name:'Menu Panini Saumon',    desc:'Panini garni de saumon',                         price:8.45, cat:'menus-paninis', emoji:'🥪' },
-  { id:19, name:'Menu Panini Bolognaise',desc:'Panini garni de sauce bolognaise, pain pressé et chaud', price:8.45, cat:'menus-paninis', emoji:'🥪' },
-  { id:20, name:'Menu Panini 1 Viande',  desc:'Panini garni d\'1 viande au choix',              price:8.45, cat:'menus-paninis', emoji:'🥪', config:'panini' },
+  { id:16, name:'Menu Panini Thon',      desc:'Panini grillé garni de thon',                    price:8.45, cat:'menus-paninis', emoji:'🥪' , config:'menu-fixe', menu:true },
+  { id:17, name:'Menu Panini Fromage',   desc:'Panini garni de fromage fondu',                  price:8.45, cat:'menus-paninis', emoji:'🥪', popular:true , config:'menu-fixe', menu:true },
+  { id:18, name:'Menu Panini Saumon',    desc:'Panini garni de saumon',                         price:8.45, cat:'menus-paninis', emoji:'🥪' , config:'menu-fixe', menu:true },
+  { id:19, name:'Menu Panini Bolognaise',desc:'Panini garni de sauce bolognaise, pain pressé et chaud', price:8.45, cat:'menus-paninis', emoji:'🥪' , config:'menu-fixe', menu:true },
+  { id:20, name:'Menu Panini 1 Viande',  desc:'Panini garni d\'1 viande au choix',              price:8.45, cat:'menus-paninis', emoji:'🥪', config:'panini', menu:true },
 
   /* ── MENUS TACOS ── */
-  { id:21, name:'Menu Tacos L',  desc:'1 viande au choix, sauce fromagère maison',   price:11.05, cat:'menus-tacos', emoji:'🌮', config:'tacos-l', popular:true },
-  { id:22, name:'Menu Tacos XL', desc:'2 viandes au choix, sauce fromagère maison',  price:13.00, cat:'menus-tacos', emoji:'🌮', config:'tacos-xl', popular:true },
+  { id:21, name:'Menu Tacos L',  desc:'1 viande au choix, sauce fromagère maison',   price:11.05, cat:'menus-tacos', emoji:'🌮', config:'tacos-l', popular:true, menu:true },
+  { id:22, name:'Menu Tacos XL', desc:'2 viandes au choix, sauce fromagère maison',  price:13.00, cat:'menus-tacos', emoji:'🌮', config:'tacos-xl', popular:true, menu:true },
 
   /* ── MENUS BURGERS ── */
-  { id:23, name:'Menu Double Gros Hamburger',      desc:'2 steaks 180 g, 2 fromages, salade et tomates',   price:13.00, cat:'menus-burgers', emoji:'🍔', popular:true },
-  { id:24, name:'Menu Gros Hamburger',              desc:'1 steak 180 g, 2 fromages, salade et tomates',   price:10.40, cat:'menus-burgers', emoji:'🍔' },
-  { id:25, name:'Menu Double Gros Hamburger Plus',  desc:'2 steaks 180 g, œuf et 2 fromages',              price:15.60, cat:'menus-burgers', emoji:'🍔' },
-  { id:26, name:'Menu Cheeseburger',                desc:'1 steak et fromage',                              price:7.15,  cat:'menus-burgers', emoji:'🍔', popular:true },
-  { id:27, name:'Menu Double Cheeseburger',         desc:'2 steaks et 2 fromages',                          price:8.45,  cat:'menus-burgers', emoji:'🍔' },
-  { id:28, name:'Menu Burger de Poulet',            desc:'Poulet pané et fromage',                          price:7.80,  cat:'menus-burgers', emoji:'🍔' },
-  { id:29, name:'Menu Zinger Burger',                desc:'Poulet façon KFC et fromage',                     price:8.45,  cat:'menus-burgers', emoji:'🍔' },
-  { id:30, name:'Menu Burger de Poisson',           desc:'Poisson pané, salade, oignons et fromage',        price:7.15,  cat:'menus-burgers', emoji:'🍔' },
-  { id:31, name:'Menu Burger Maison',                desc:'Steak viande hachée 100 g, fromage, raclette, salade, tomates et oignons', price:9.10, cat:'menus-burgers', emoji:'🍔' },
-  { id:32, name:'Menu Hamburger Végétarien',        desc:'Steak de pommes de terre, œuf et fromage',        price:7.80,  cat:'menus-burgers', emoji:'🍔' },
+  { id:23, name:'Menu Double Gros Hamburger',      desc:'2 steaks 180 g, 2 fromages, salade et tomates',   price:13.00, cat:'menus-burgers', emoji:'🍔', popular:true , config:'menu-fixe', menu:true },
+  { id:24, name:'Menu Gros Hamburger',              desc:'1 steak 180 g, 2 fromages, salade et tomates',   price:10.40, cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
+  { id:25, name:'Menu Double Gros Hamburger Plus',  desc:'2 steaks 180 g, œuf et 2 fromages',              price:15.60, cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
+  { id:26, name:'Menu Cheeseburger',                desc:'1 steak et fromage',                              price:7.15,  cat:'menus-burgers', emoji:'🍔', popular:true , config:'menu-fixe', menu:true },
+  { id:27, name:'Menu Double Cheeseburger',         desc:'2 steaks et 2 fromages',                          price:8.45,  cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
+  { id:28, name:'Menu Burger de Poulet',            desc:'Poulet pané et fromage',                          price:7.80,  cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
+  { id:29, name:'Menu Zinger Burger',                desc:'Poulet façon KFC et fromage',                     price:8.45,  cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
+  { id:30, name:'Menu Burger de Poisson',           desc:'Poisson pané, salade, oignons et fromage',        price:7.15,  cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
+  { id:31, name:'Menu Burger Maison',                desc:'Steak viande hachée 100 g, fromage, raclette, salade, tomates et oignons', price:9.10, cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
+  { id:32, name:'Menu Hamburger Végétarien',        desc:'Steak de pommes de terre, œuf et fromage',        price:7.80,  cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
 
   /* ── MENUS PIZZA TURQUE ── */
-  { id:33, name:'Menu Pizza Turque', desc:'Spécialité turque de pâte garnie à la pizza',  price:7.80, cat:'menus-pizza-turque', emoji:'🫓', popular:true },
+  { id:33, name:'Menu Pizza Turque', desc:'Spécialité turque de pâte garnie à la pizza',  price:7.80, cat:'menus-pizza-turque', emoji:'🫓', popular:true , config:'menu-fixe', menu:true },
 
   /* ── MENUS CROQUES ── */
-  { id:34, name:'Menu Croque Monsieur', desc:'Pain de mie, jambon et fromage', price:6.50, cat:'menus-croques', emoji:'🧀' },
+  { id:34, name:'Menu Croque Monsieur', desc:'Pain de mie, jambon et fromage', price:6.50, cat:'menus-croques', emoji:'🧀' , config:'menu-fixe', menu:true },
 
   /* ── TEX-MEX ── */
   { id:35, name:'Pépites',           desc:'3 pièces',   price:2.60, cat:'tex-mex', emoji:'🍗' },
@@ -1037,16 +1043,18 @@ function formatPrice(n) {
 function cartKey(productId, config) {
   if (!config) return `p${productId}`;
   const v = (config.viandes || []).join('+');
-  const s = config.sauce || '';
+  const s = (config.sauces || []).join('+');
+  const b = config.boisson || '';
   const sup = (config.supplements || []).join('+');
-  return `p${productId}-${v}-${s}-${sup}`;
+  return `p${productId}-${v}-${s}-${b}-${sup}`;
 }
 
 function cartItemLabel(product, config) {
   if (!config) return product.name;
   const parts = [];
   if (config.viandes?.length) parts.push(config.viandes.join(', '));
-  if (config.sauce) parts.push(config.sauce);
+  if (config.sauces?.length) parts.push(config.sauces.join(' + '));
+  if (config.boisson) parts.push(config.boisson === 'Sans boisson' ? 'sans boisson' : `+ ${config.boisson}`);
   if (config.supplements?.length) parts.push(config.supplements.join(', '));
   return parts.length ? `${product.name} (${parts.join(' · ')})` : product.name;
 }
@@ -1258,35 +1266,56 @@ function openConfigurator(product) {
   const maxViandes = rule.viandes;
   let html = '';
 
-  /* Viandes */
+  /* Viandes — masqué si la recette est fixe (ex. Menu Cheeseburger : la viande est déjà déterminée) */
+  if (maxViandes > 0) {
+    html += `
+      <div class="config-section">
+        <p class="config-section-title">
+          Viande${maxViandes > 1 ? 's' : ''}
+          <span>(${rule.label})</span>
+          <span class="config-viande-count" id="viandeCount">0/${maxViandes}</span>
+        </p>
+        <div class="config-options" id="viandeOptions">
+          ${VIANDES.map((v, i) => `
+            <label class="config-option" id="viandeOpt_${i}">
+              <input type="checkbox" name="viande" value="${v}" />
+              <span class="config-option-label">${v}</span>
+            </label>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  /* Sauce — 2 au choix maximum */
   html += `
     <div class="config-section">
       <p class="config-section-title">
-        Viande${maxViandes > 1 ? 's' : ''}
-        <span>(${rule.label})</span>
-        <span class="config-viande-count" id="viandeCount">0/${maxViandes}</span>
+        Sauces
+        <span>(2 au choix maximum)</span>
+        <span class="config-viande-count" id="sauceCount">0/2</span>
       </p>
-      <div class="config-options" id="viandeOptions">
-        ${VIANDES.map((v, i) => `
-          <label class="config-option" id="viandeOpt_${i}">
-            <input type="checkbox" name="viande" value="${v}" />
-            <span class="config-option-label">${v}</span>
-          </label>`).join('')}
-      </div>
-    </div>`;
-
-  /* Sauce */
-  html += `
-    <div class="config-section">
-      <p class="config-section-title">Sauce <span>(1 au choix)</span></p>
-      <div class="config-options">
+      <div class="config-options" id="sauceOptions">
         ${SAUCES.map((s, i) => `
-          <label class="config-option">
-            <input type="radio" name="sauce" value="${s}" ${i === 0 ? 'checked' : ''} />
+          <label class="config-option" id="sauceOpt_${i}">
+            <input type="checkbox" name="sauce" value="${s}" ${i === 0 ? 'checked' : ''} />
             <span class="config-option-label">${s}</span>
           </label>`).join('')}
       </div>
     </div>`;
+
+  /* Boisson — uniquement pour les produits "Menu", incluse dans le prix affiché */
+  if (product.menu) {
+    html += `
+      <div class="config-section">
+        <p class="config-section-title">Boisson <span>(incluse dans le menu)</span></p>
+        <div class="config-options">
+          ${BOISSONS.map((b, i) => `
+            <label class="config-option">
+              <input type="radio" name="boisson" value="${b}" ${i === 0 ? 'checked' : ''} />
+              <span class="config-option-label">${b}</span>
+            </label>`).join('')}
+        </div>
+      </div>`;
+  }
 
   /* Supplements (not for mixte) */
   if (product.config !== 'mixte') {
@@ -1308,32 +1337,37 @@ function openConfigurator(product) {
 
   if (body) body.innerHTML = html;
 
-  /* Gestion viandes : max selection */
-  const viandeInputs = body.querySelectorAll('input[name="viande"]');
-  const viandeCount  = $('viandeCount');
-
-  function updateViandeState() {
-    const checked = [...viandeInputs].filter(i => i.checked);
-    const count   = checked.length;
-    if (viandeCount) viandeCount.textContent = `${count}/${maxViandes}`;
-    viandeInputs.forEach(inp => {
-      const label = inp.closest('.config-option');
-      if (count >= maxViandes && !inp.checked) {
-        label.classList.add('disabled');
-        inp.disabled = true;
-      } else {
-        label.classList.remove('disabled');
-        inp.disabled = false;
-      }
-    });
-    updateConfigTotal();
+  /* Gestion sélection à plafond : utilisée pour "viande" (max variable) et "sauce" (max 2) */
+  function setupCappedGroup(inputs, countEl, max) {
+    function update() {
+      const checked = [...inputs].filter(i => i.checked);
+      const count   = checked.length;
+      if (countEl) countEl.textContent = `${count}/${max}`;
+      inputs.forEach(inp => {
+        const label = inp.closest('.config-option');
+        if (count >= max && !inp.checked) {
+          label.classList.add('disabled');
+          inp.disabled = true;
+        } else {
+          label.classList.remove('disabled');
+          inp.disabled = false;
+        }
+      });
+      updateConfigTotal();
+    }
+    inputs.forEach(inp => inp.addEventListener('change', update));
+    update();
   }
 
-  viandeInputs.forEach(inp => {
-    inp.addEventListener('change', updateViandeState);
-  });
+  /* Viandes : max variable selon le produit (uniquement si le bloc existe) */
+  const viandeInputs = body.querySelectorAll('input[name="viande"]');
+  if (viandeInputs.length) setupCappedGroup(viandeInputs, $('viandeCount'), maxViandes);
 
-  body.querySelectorAll('input[name="sauce"]').forEach(inp => {
+  /* Sauces : 2 maximum, toujours présent */
+  const sauceInputs = body.querySelectorAll('input[name="sauce"]');
+  setupCappedGroup(sauceInputs, $('sauceCount'), 2);
+
+  body.querySelectorAll('input[name="boisson"]').forEach(inp => {
     inp.addEventListener('change', updateConfigTotal);
   });
 
@@ -1365,15 +1399,23 @@ function confirmConfigurator() {
   const rule = CONFIG_RULES[configuratorProduct.config];
 
   const viandes = [...($q('#configuratorBody')?.querySelectorAll('input[name="viande"]:checked') || [])].map(i => i.value);
-  const sauce   = $q('#configuratorBody input[name="sauce"]:checked')?.value || SAUCES[0];
+  const sauces  = [...($q('#configuratorBody')?.querySelectorAll('input[name="sauce"]:checked') || [])].map(i => i.value);
+  const boisson = configuratorProduct.menu
+    ? ($q('#configuratorBody input[name="boisson"]:checked')?.value || BOISSONS[0])
+    : null;
   const sups    = [...($q('#configuratorBody')?.querySelectorAll('input[name="supplement"]:checked') || [])].map(i => i.value);
 
-  if (viandes.length !== rule.viandes) {
+  if (rule.viandes > 0 && viandes.length !== rule.viandes) {
     showToast(`⚠️ Sélectionnez ${rule.viandes} viande${rule.viandes > 1 ? 's' : ''}`);
     return;
   }
 
-  addToCart(configuratorProduct, { viandes, sauce, supplements: sups });
+  if (sauces.length === 0) {
+    showToast('⚠️ Sélectionnez au moins 1 sauce');
+    return;
+  }
+
+  addToCart(configuratorProduct, { viandes, sauces, boisson, supplements: sups });
   closeConfigurator();
   openCart();
 }
@@ -1493,6 +1535,7 @@ function renderProducts() {
       else { addToCart(p); openCart(); }
     };
     card.querySelector('.product-add-btn').addEventListener('click', e => { e.stopPropagation(); handleAdd(); });
+    card.addEventListener('click', handleAdd);
     card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleAdd(); } });
     if (window.innerWidth >= 1024) init3DTilt(card);
   });
