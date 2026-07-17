@@ -713,7 +713,7 @@ address { font-style:normal; }
     <div class="trust-item"><div class="trust-icon-w"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="trust-c"><strong>Ouvert 7j/7</strong><span>11h00 – 23h00</span></div></div>
     <div class="trust-item"><div class="trust-icon-w"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div class="trust-c"><strong>Livraison rapide</strong><span>Montereau &amp; alentours</span></div></div>
     <div class="trust-item"><div class="trust-icon-w"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div><div class="trust-c"><strong>Commande WhatsApp</strong><span>En quelques secondes</span></div></div>
-    <div class="trust-item"><div class="trust-icon-w"><svg width="13" height="13" viewBox="0 0 24 24" fill="#FFC700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="trust-c"><strong>Noté 4,1/5</strong><span>Uber Eats · 170 avis</span></div></div>
+    <div class="trust-item"><div class="trust-icon-w"><svg width="13" height="13" viewBox="0 0 24 24" fill="#FFC700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="trust-c"><strong>Noté 4,1/5</strong><span>Uber Eats · 109 avis</span></div></div>
   </div></div>
 </section>
 
@@ -721,7 +721,7 @@ address { font-style:normal; }
 <section id="stats" class="stats-section">
   <div class="container"><div class="stats-grid">
     <div class="stat-item reveal"><span class="stat-icon">⭐</span><div class="stat-c"><span class="stat-val" data-countup="4.1" data-decimals="1" data-suffix="/5">4,1/5</span><span class="stat-lbl">Note Google</span></div></div>
-    <div class="stat-item reveal"><span class="stat-icon">💬</span><div class="stat-c"><span class="stat-val" data-countup="170" data-suffix="+">170+</span><span class="stat-lbl">Avis clients</span></div></div>
+    <div class="stat-item reveal"><span class="stat-icon">💬</span><div class="stat-c"><span class="stat-val" data-countup="109" data-suffix="+">109+</span><span class="stat-lbl">Avis clients</span></div></div>
     <div class="stat-item reveal"><span class="stat-icon">🔥</span><div class="stat-c"><div class="live-wrap"><span class="live-dot"></span><span class="live-num" id="liveOrderCount">–</span></div><span class="stat-lbl">Commandes ce soir</span></div></div>
     <div class="stat-item reveal"><span class="stat-icon">🕒</span><div class="stat-c"><span class="stat-val">7j/7</span><span class="stat-lbl">11h00 – 23h00</span></div></div>
   </div></div>
@@ -877,6 +877,7 @@ const CONFIG_RULES = {
   'sandwich2': { viandes:2, label:'2 viandes au choix' },
   'panini':    { viandes:1, label:'1 viande au choix' },
   'menu-fixe': { viandes:0, label:'' },
+  'pizza-3v':  { viandes:3, label:'3 viandes au choix' },
 };
 
 /* ═══════════════════════════════════════════════════
@@ -978,7 +979,7 @@ const PRODUCTS = [
   { id:50, name:'Pizza au Poulet',    desc:'Base au choix, fromage, poulet et pommes de terre — taille senior',         price:9.75, cat:'pizzas', emoji:'🍕' },
   { id:51, name:'Pizza au Saumon',    desc:'Base au choix, fromage, saumon et pommes de terre — taille senior',        price:9.75, cat:'pizzas', emoji:'🍕' },
   { id:52, name:'Pizza Thon',         desc:'Base au choix, fromage, thon et olives — taille senior',                    price:9.75, cat:'pizzas', emoji:'🍕' },
-  { id:53, name:'Pizza 3 Viandes',    desc:'Base et 3 viandes au choix et fromage — taille senior',                    price:9.75, cat:'pizzas', emoji:'🍕', popular:true },
+  { id:53, name:'Pizza 3 Viandes',    desc:'Base et 3 viandes au choix et fromage — taille senior',                    price:9.75, cat:'pizzas', emoji:'🍕', popular:true, config:'pizza-3v' },
 
   /* ── TACOS SEULS ── */
   { id:54, name:'Tacos L',  desc:'1 viande au choix, sauce maison',            price:9.10,  cat:'tacos', emoji:'🌮', config:'tacos-l' },
@@ -1366,22 +1367,26 @@ function openConfigurator(product) {
       </div>`;
   }
 
-  /* Sauce — 2 au choix maximum */
-  html += `
-    <div class="config-section">
-      <p class="config-section-title">
-        Sauces
-        <span>(2 au choix maximum)</span>
-        <span class="config-viande-count" id="sauceCount">0/2</span>
-      </p>
-      <div class="config-options" id="sauceOptions">
-        ${SAUCES.map((s, i) => `
-          <label class="config-option" id="sauceOpt_${i}">
-            <input type="checkbox" name="sauce" value="${s}" ${i === 0 ? 'checked' : ''} />
-            <span class="config-option-label">${s}</span>
-          </label>`).join('')}
-      </div>
-    </div>`;
+  /* Sauce — 2 au choix maximum. Non pertinent pour les pizzas (garniture déjà fixée par la recette,
+     hors choix de viandes) : masqué pour la règle 'pizza-3v'. */
+  const hasSauces = product.config !== 'pizza-3v';
+  if (hasSauces) {
+    html += `
+      <div class="config-section">
+        <p class="config-section-title">
+          Sauces
+          <span>(2 au choix maximum)</span>
+          <span class="config-viande-count" id="sauceCount">0/2</span>
+        </p>
+        <div class="config-options" id="sauceOptions">
+          ${SAUCES.map((s, i) => `
+            <label class="config-option" id="sauceOpt_${i}">
+              <input type="checkbox" name="sauce" value="${s}" ${i === 0 ? 'checked' : ''} />
+              <span class="config-option-label">${s}</span>
+            </label>`).join('')}
+        </div>
+      </div>`;
+  }
 
   /* Boisson — uniquement pour les produits "Menu", incluse dans le prix affiché */
   if (product.menu) {
@@ -1444,9 +1449,9 @@ function openConfigurator(product) {
   const viandeInputs = body.querySelectorAll('input[name="viande"]');
   if (viandeInputs.length) setupCappedGroup(viandeInputs, $('viandeCount'), maxViandes);
 
-  /* Sauces : 2 maximum, toujours présent */
+  /* Sauces : 2 maximum, absent pour les pizzas (bloc masqué plus haut) */
   const sauceInputs = body.querySelectorAll('input[name="sauce"]');
-  setupCappedGroup(sauceInputs, $('sauceCount'), 2);
+  if (sauceInputs.length) setupCappedGroup(sauceInputs, $('sauceCount'), 2);
 
   body.querySelectorAll('input[name="boisson"]').forEach(inp => {
     inp.addEventListener('change', updateConfigTotal);
@@ -1491,7 +1496,8 @@ function confirmConfigurator() {
     return;
   }
 
-  if (sauces.length === 0) {
+  const hasSauces = configuratorProduct.config !== 'pizza-3v';
+  if (hasSauces && sauces.length === 0) {
     showToast('⚠️ Sélectionnez au moins 1 sauce');
     return;
   }
@@ -1789,7 +1795,7 @@ function initOpenStatus() {
       const closeH   = Math.floor(close / 60);
       const closeM   = close % 60;
       text.textContent = close <= 60
-        ? `Ferme dans ${closeH > 0 ? closeH + 'h' : ''}${closeM}min`
+        ? `Ferme dans ${closeH > 0 ? closeH + 'h' + (closeM > 0 ? closeM : '') : closeM + 'min'}`
         : 'Ouvert maintenant';
     } else {
       text.textContent = `Ouvert à ${OPENING_HOUR}h00`;
@@ -2124,37 +2130,52 @@ function renderPopulaires() {
   });
 }
 
-/* ═══ MAIN INIT ═══ */
+/* ═══ MAIN INIT ═══
+   Chaque étape est isolée dans son propre try/catch : si l'une d'elles échoue
+   (navigateur ancien, API manquante, erreur imprévue), les suivantes s'exécutent
+   quand même. Sans cela, une seule exception non gérée aurait interrompu tout le
+   reste du bloc DOMContentLoaded — panier, menu, recherche, avis compris — sans
+   qu'aucun message n'apparaisse pour l'utilisateur ni pour nous. */
+function safeInit(fn, label) {
+  try {
+    fn();
+  } catch (err) {
+    console.error(`[Le Touareg] Échec init "${label}" :`, err);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  initYear();
-  initAnnounceBar();
-  initScrollProgress();
-  initHeader();
-  initReveal();
-  initOpenStatus();
-  initLiveCounter();
+  safeInit(initYear, 'initYear');
+  safeInit(initAnnounceBar, 'initAnnounceBar');
+  safeInit(initScrollProgress, 'initScrollProgress');
+  safeInit(initHeader, 'initHeader');
+  safeInit(initReveal, 'initReveal');
+  safeInit(initOpenStatus, 'initOpenStatus');
+  safeInit(initLiveCounter, 'initLiveCounter');
 
   /* Render */
-  renderPopulaires();
-  renderCategories();
-  renderProducts();
-  renderReviews();
-  initCounters();
-  initParticles();
+  safeInit(renderPopulaires, 'renderPopulaires');
+  safeInit(renderCategories, 'renderCategories');
+  safeInit(renderProducts, 'renderProducts');
+  safeInit(renderReviews, 'renderReviews');
+  safeInit(initCounters, 'initCounters');
+  safeInit(initParticles, 'initParticles');
 
-  initSearch();
-  initFilters();
-  initCart();
-  initFab();
-  initFooterLinks();
-  initFaq();
+  safeInit(initSearch, 'initSearch');
+  safeInit(initFilters, 'initFilters');
+  safeInit(initCart, 'initCart');
+  safeInit(initFab, 'initFab');
+  safeInit(initFooterLinks, 'initFooterLinks');
+  safeInit(initFaq, 'initFaq');
 
   /* Tilt 3D — étendu aux cartes populaires et classiques (produits déjà couverts via init3DTilt par carte) */
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.innerWidth >= 1024) {
-    document.querySelectorAll('.pop-card, .classique-card').forEach(init3DTilt);
-  }
+  safeInit(() => {
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.innerWidth >= 1024) {
+      document.querySelectorAll('.pop-card, .classique-card').forEach(init3DTilt);
+    }
+  }, 'tilt3D (pop/classique)');
 
-  initKeyboard();
+  safeInit(initKeyboard, 'initKeyboard');
 });
 
 
