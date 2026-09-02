@@ -245,7 +245,7 @@ address { font-style:normal; }
 .hero-actions { display:flex; flex-wrap:wrap; gap:.75rem; animation:fadeUp .9s var(--ease-o) .64s both; }
 
 /* PHOTOS HERO — ombres portées chaudes façon photo posée sur la table */
-.hero-photos { position:relative; width:420px; height:600px; flex-shrink:0; }
+.hero-photos { position:relative; width:420px; height:600px; flex-shrink:0; transition:transform .5s var(--ease-o); will-change:transform; }
 .hp { position:absolute; border-radius:20px; overflow:hidden; cursor:pointer; transition:transform .4s var(--ease-o),box-shadow .4s; }
 .hp:hover { transform:scale(1.04) !important; z-index:10 !important; }
 .hp img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s var(--ease-o); }
@@ -259,6 +259,13 @@ address { font-style:normal; }
 .hp-tacos { background:linear-gradient(135deg,#F3D9B8,#E8BF8C); }
 .hp-kebab { background:linear-gradient(135deg,#E4DCC8,#D3C6A8); }
 .hp-burger { background:linear-gradient(135deg,#F0DCC4,#E0BF9A); }
+.hp-steam { position:absolute; top:-6px; left:50%; transform:translateX(-50%); width:60px; height:70px; pointer-events:none; z-index:4; mix-blend-mode:multiply; }
+.hp-steam span { position:absolute; bottom:0; width:10px; height:10px; border-radius:50%; background:radial-gradient(circle,rgba(255,255,255,.85),transparent 70%); filter:blur(3px); animation:steamRise 3.2s ease-in infinite; }
+.hp-steam span:nth-child(1) { left:6px; animation-delay:0s; }
+.hp-steam span:nth-child(2) { left:26px; animation-delay:1s; }
+.hp-steam span:nth-child(3) { left:44px; animation-delay:2s; }
+@keyframes steamRise { 0% { opacity:0; transform:translateY(0) scale(.6); } 20% { opacity:.55; } 100% { opacity:0; transform:translateY(-58px) scale(1.5); } }
+@media (prefers-reduced-motion:reduce) { .hp-steam { display:none; } }
 @keyframes floatA { 0%,100% { transform:rotate(-4deg) translateY(0); } 50% { transform:rotate(-4deg) translateY(-14px); } }
 @keyframes floatB { 0%,100% { transform:rotate(6deg) translateY(0); } 50% { transform:rotate(6deg) translateY(12px); } }
 @keyframes floatC { 0%,100% { transform:rotate(-2deg) translateY(0); } 50% { transform:rotate(-2deg) translateY(-10px); } }
@@ -704,7 +711,7 @@ address { font-style:normal; }
       </div>
     </div>
     <div class="hero-photos" aria-hidden="true">
-      <div class="hp hp-1 hp-tacos"><span class="hp-emoji-fb">🌮</span><img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=85" alt="Tacos Le Touareg" loading="eager" onerror="this.hidden=true"/><div class="hp-label">Tacos XL</div></div>
+      <div class="hp hp-1 hp-tacos"><span class="hp-emoji-fb">🌮</span><img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=85" alt="Tacos Le Touareg" loading="eager" onerror="this.hidden=true"/><div class="hp-steam" aria-hidden="true"><span></span><span></span><span></span></div><div class="hp-label">Tacos XL</div></div>
       <div class="hp hp-2 hp-kebab"><span class="hp-emoji-fb">🥙</span><img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=600&q=85" alt="Kebab Le Touareg" loading="eager" onerror="this.hidden=true"/><div class="hp-label">Kebab Grillé</div></div>
       <div class="hp hp-3 hp-burger"><span class="hp-emoji-fb">🍔</span><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=85" alt="Burger Le Touareg" loading="eager" onerror="this.hidden=true"/><div class="hp-label">Double Burger</div></div>
     </div>
@@ -1802,6 +1809,34 @@ function initHeader() {
 }
 
 /* ═══════════════════════════════════════════════════
+   INIT — Parallaxe souris sur les photos du hero
+   Chaque photo réagit à la position du curseur avec une profondeur
+   différente (hp-1 bouge plus que hp-3), pour un effet de flottement
+   3D discret qui s'ajoute à l'animation float en CSS.
+═══════════════════════════════════════════════════ */
+function initHeroParallax() {
+  const hero = document.getElementById('hero');
+  const photosLayer = hero?.querySelector('.hero-photos');
+  if (!hero || !photosLayer || window.innerWidth < 1024) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  let raf = null, tx = 0, ty = 0;
+
+  hero.addEventListener('mousemove', e => {
+    const r = hero.getBoundingClientRect();
+    tx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+    ty = ((e.clientY - r.top) / r.height - 0.5) * 2;
+    if (!raf) raf = requestAnimationFrame(apply);
+  });
+  hero.addEventListener('mouseleave', () => { tx = 0; ty = 0; if (!raf) raf = requestAnimationFrame(apply); });
+
+  function apply() {
+    photosLayer.style.transform = `translate3d(${(tx * 18).toFixed(1)}px, ${(ty * 14).toFixed(1)}px, 0)`;
+    raf = null;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
    INIT — Barre de progression scroll
 ═══════════════════════════════════════════════════ */
 function initScrollProgress() {
@@ -2192,6 +2227,7 @@ document.addEventListener('DOMContentLoaded', () => {
   safeInit(initAnnounceBar, 'initAnnounceBar');
   safeInit(initScrollProgress, 'initScrollProgress');
   safeInit(initHeader, 'initHeader');
+  safeInit(initHeroParallax, 'initHeroParallax');
   safeInit(initReveal, 'initReveal');
   safeInit(initOpenStatus, 'initOpenStatus');
   safeInit(initLiveCounter, 'initLiveCounter');
