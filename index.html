@@ -101,14 +101,8 @@ address { font-style:normal; }
 .btn-full { width:100%; }
 .btn-phone { display:inline-flex; align-items:center; gap:.5rem; font-size:.72rem; font-weight:600; color:var(--muted); letter-spacing:.03em; transition:color var(--tf); padding:.5rem .75rem; border-radius:var(--r-md); white-space:nowrap; }
 .btn-phone-txt { display:none; }
-@media (hover:hover) {
-  .btn:hover::after { opacity:.09; }
-  .btn-primary:hover { box-shadow:var(--glow-red); transform:translateY(-2px); }
-  .btn-wa:hover { background:var(--wa-d); border-color:var(--wa-d); box-shadow:0 8px 20px rgba(29,168,81,.28); transform:translateY(-2px); }
-  .btn-outline:hover { border-color:var(--orange); background:rgba(217,119,6,.06); box-shadow:0 4px 14px rgba(217,119,6,.14); }
-  .btn-ghost:hover { border-color:var(--cyan); background:rgba(14,116,144,.06); box-shadow:0 4px 14px rgba(14,116,144,.12); }
-  .btn-phone:hover { color:var(--off); }
-}
+.btn:hover::after, .btn.mobile-hover::after { opacity:.09; }.btn-primary:hover, .btn-primary.mobile-hover { box-shadow:var(--glow-red); transform:translateY(-2px); }.btn-wa:hover, .btn-wa.mobile-hover { background:var(--wa-d); border-color:var(--wa-d); box-shadow:0 8px 20px rgba(29,168,81,.28); transform:translateY(-2px); }.btn-outline:hover, .btn-outline.mobile-hover { border-color:var(--orange); background:rgba(217,119,6,.06); box-shadow:0 4px 14px rgba(217,119,6,.14); }.btn-ghost:hover, .btn-ghost.mobile-hover { border-color:var(--cyan); background:rgba(14,116,144,.06); box-shadow:0 4px 14px rgba(14,116,144,.12); }.btn-phone:hover, .btn-phone.mobile-hover { color:var(--off); }
+
 @media (min-width:900px) { .btn-phone-txt { display:inline; } }
 
 /* HEADER */
@@ -149,16 +143,8 @@ address { font-style:normal; }
 .mobile-nav nav { display:flex; flex-direction:column; border-bottom:1px solid var(--border); padding-bottom:1rem; margin-bottom:.5rem; gap:.25rem; }
 .mobile-nav-link { font-size:1rem; font-weight:600; color:var(--off); padding:.75rem .5rem; border-radius:var(--r-md); transition:all var(--tf); }
 .mobile-phone-link { display:flex; align-items:center; gap:.5rem; font-size:.875rem; font-weight:600; color:var(--muted); padding:.5rem .5rem; }
-@media (hover:hover) {
-  .a-link:hover { opacity:.85; }
-  .a-close:hover { color:#fff; background:rgba(255,255,255,.2); }
-  .logo:hover { filter:brightness(1.06); }
-  .nav-link:hover { color:var(--off); }
-  .nav-link:hover::after { transform:scaleX(1); }
-  .hamburger:hover { border-color:var(--orange); }
-  .mobile-nav-link:hover { color:var(--orange); background:rgba(60,40,20,.04); }
-  .mobile-phone-link:hover { color:var(--off); }
-}
+.a-link:hover, .a-link.mobile-hover { opacity:.85; }.a-close:hover, .a-close.mobile-hover { color:#fff; background:rgba(255,255,255,.2); }.logo:hover, .logo.mobile-hover { filter:brightness(1.06); }.nav-link:hover, .nav-link.mobile-hover { color:var(--off); }.nav-link:hover::after, .nav-link.mobile-hover::after { transform:scaleX(1); }.hamburger:hover, .hamburger.mobile-hover { border-color:var(--orange); }.mobile-nav-link:hover, .mobile-nav-link.mobile-hover { color:var(--orange); background:rgba(60,40,20,.04); }.mobile-phone-link:hover, .mobile-phone-link.mobile-hover { color:var(--off); }
+
 
 /* CART — verre dépoli chaud sur papier */
 .cart-overlay { position:fixed; inset:0; background:rgba(42,32,21,.45); backdrop-filter:blur(6px); z-index:1000; opacity:0; pointer-events:none; transition:opacity var(--t); }
@@ -205,14 +191,8 @@ address { font-style:normal; }
 .order-mode-label--static { border-color:var(--orange); color:var(--off); background:rgba(217,119,6,.1); cursor:default; }
 .cart-delivery-note { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:.4rem; font-size:.78rem; color:var(--muted2); text-align:center; padding-top:.6rem; border-top:1px solid var(--border); }
 .cart-delivery-note-link { display:inline-flex; align-items:center; gap:.35rem; color:var(--off); font-weight:700; text-decoration:underline; text-underline-offset:2px; }
-@media (hover:hover) {
-  .cart-close:hover { border-color:var(--red); color:var(--red); }
-  .cart-item:hover { border-color:rgba(217,119,6,.28); }
-  .qty-btn:hover { background:var(--orange); color:#fff; }
-  .qty-btn.remove:hover { background:var(--red); color:#fff; }
-  .order-mode-label:hover { border-color:var(--orange); color:var(--off); }
-  .cart-delivery-note-link:hover { color:var(--orange); }
-}
+.cart-close:hover, .cart-close.mobile-hover { border-color:var(--red); color:var(--red); }.cart-item:hover, .cart-item.mobile-hover { border-color:rgba(217,119,6,.28); }.qty-btn:hover, .qty-btn.mobile-hover { background:var(--orange); color:#fff; }.qty-btn.remove:hover, .qty-btn.remove.mobile-hover { background:var(--red); color:#fff; }.order-mode-label:hover, .order-mode-label.mobile-hover { border-color:var(--orange); color:var(--off); }.cart-delivery-note-link:hover, .cart-delivery-note-link.mobile-hover { color:var(--orange); }
+
 /* ═══ HERO ═══ */
 /* ═══ SHOWCASE — scroll-lock plein écran, cinématique ═══
    Le wrapper .showcase-lock est haut (300vh) pour offrir 3 "crans" de scroll.
@@ -298,7 +278,7 @@ address { font-style:normal; }
 .status-dot { width:6px; height:6px; border-radius:50%; background:#22C55E; animation:statusPulse 2s ease-in-out infinite; }
 .pill-closed .status-dot { background:#DC2626; animation:none; }
 @keyframes statusPulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.4; transform:scale(.65); } }
-@media (hover:hover) { .hero-pill:hover { border-color:rgba(60,40,20,.25); transform:translateY(-1px); } }
+.hero-pill:hover, .hero-pill.mobile-hover { border-color:rgba(60,40,20,.25); transform:translateY(-1px); } 
 
 /* TITRE HERO — pas de glitch néon, juste une entrée douce */
 .hero-title { display:flex; flex-direction:column; align-items:flex-start; line-height:.85; margin-bottom:1.5rem; animation:fadeUp .9s var(--ease-o) .22s both; }
@@ -317,11 +297,8 @@ address { font-style:normal; }
 .hp img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s var(--ease-o); }
 .hp-label { position:absolute; bottom:0; left:0; right:0; padding:.75rem 1rem; background:linear-gradient(to top,rgba(42,32,21,.88),transparent); font-family:var(--font-d); font-size:1.4rem; color:#fff; letter-spacing:.08em; opacity:0; transform:translateY(4px); transition:all .3s; }
 .hp-emoji-fb { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:5rem; opacity:.45; z-index:0; pointer-events:none; }
-@media (hover:hover) {
-  .hp:hover { transform:scale(1.04) !important; z-index:10 !important; }
-  .hp:hover img { transform:scale(1.07); }
-  .hp:hover .hp-label { opacity:1; transform:translateY(0); }
-}
+.hp:hover, .hp.mobile-hover { transform:scale(1.04) !important; z-index:10 !important; }.hp:hover img, .hp.mobile-hover img { transform:scale(1.07); }.hp:hover .hp-label, .hp.mobile-hover .hp-label { opacity:1; transform:translateY(0); }
+
 .hp-1 { width:230px; height:280px; top:30px; left:40px; transform:rotate(-4deg); z-index:3; animation:floatA 7s ease-in-out infinite; box-shadow:0 20px 44px rgba(60,40,20,.22),0 0 0 6px #fff; }
 .hp-2 { width:200px; height:250px; top:100px; right:0; transform:rotate(6deg); z-index:2; animation:floatB 8s ease-in-out infinite; box-shadow:0 20px 44px rgba(60,40,20,.22),0 0 0 6px #fff; }
 .hp-3 { width:220px; height:265px; top:300px; left:80px; transform:rotate(-2deg); z-index:1; animation:floatC 9s ease-in-out infinite; box-shadow:0 20px 44px rgba(60,40,20,.22),0 0 0 6px #fff; }
@@ -345,7 +322,7 @@ address { font-style:normal; }
 /* FOOD TICKER — bandeau épices défilant */
 .food-ticker { background:linear-gradient(90deg,var(--red-d),var(--red),var(--orange),var(--red),var(--red-d)); background-size:300% 100%; animation:announceFlow 10s linear infinite; overflow:hidden; padding:.55rem 0; border-top:1px solid rgba(154,52,18,.15); border-bottom:1px solid rgba(154,52,18,.15); }
 .food-ticker-track { display:inline-flex; animation:tickerScroll 28s linear infinite; gap:0; white-space:nowrap; }
-@media (hover:hover) { .food-ticker-track:hover { animation-play-state:paused; } }
+.food-ticker-track:hover, .food-ticker-track.mobile-hover { animation-play-state:paused; } 
 .ticker-item { display:inline-flex; align-items:center; gap:.4rem; padding:0 1.5rem; font-size:.7rem; font-weight:800; letter-spacing:.13em; text-transform:uppercase; color:rgba(255,255,255,.95); }
 .ticker-sep { color:rgba(255,255,255,.5); }
 @keyframes tickerScroll { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
@@ -359,10 +336,8 @@ address { font-style:normal; }
 .trust-c { display:flex; flex-direction:column; gap:2px; }
 .trust-c strong { font-size:.875rem; font-weight:800; color:var(--off); }
 .trust-c span { font-size:.72rem; color:var(--muted); }
-@media (hover:hover) {
-  .trust-item:hover { background:#fff; border-color:rgba(217,119,6,.28); transform:translateY(-4px) scale(1.02); box-shadow:0 14px 32px rgba(60,40,20,.14); }
-  .trust-item:hover .trust-icon-w { box-shadow:0 0 0 6px rgba(194,65,12,.1),0 6px 18px rgba(194,65,12,.25); transform:scale(1.12) rotate(-6deg); background:rgba(194,65,12,.14); }
-}
+.trust-item:hover, .trust-item.mobile-hover { background:#fff; border-color:rgba(217,119,6,.28); transform:translateY(-4px) scale(1.02); box-shadow:0 14px 32px rgba(60,40,20,.14); }.trust-item:hover .trust-icon-w, .trust-item.mobile-hover .trust-icon-w { box-shadow:0 0 0 6px rgba(194,65,12,.1),0 6px 18px rgba(194,65,12,.25); transform:scale(1.12) rotate(-6deg); background:rgba(194,65,12,.14); }
+
 
 /* GRAIN SUR FOND OPAQUE — pour sections --ink qui masquent la texture du body en dessous */
 .stats-section, .location-section, .footer { position:relative; }
@@ -381,11 +356,8 @@ address { font-style:normal; }
 .stat-c { display:flex; flex-direction:column; gap:3px; }
 .stat-val { font-family:var(--font-t); font-size:2rem; font-weight:800; line-height:1; letter-spacing:-.02em; background:linear-gradient(135deg,var(--gold) 0%,var(--orange) 55%,var(--red) 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
 .stat-lbl { font-size:.72rem; font-weight:700; color:var(--muted); letter-spacing:.07em; text-transform:uppercase; }
-@media (hover:hover) {
-  .stat-item:hover { border-color:transparent; box-shadow:0 18px 40px rgba(60,40,20,.16); transform:translateY(-6px) scale(1.03); }
-  .stat-item:hover::after { opacity:1; }
-  .stat-item:hover .stat-icon { transform:scale(1.18) rotate(-8deg); }
-}
+.stat-item:hover, .stat-item.mobile-hover { border-color:transparent; box-shadow:0 18px 40px rgba(60,40,20,.16); transform:translateY(-6px) scale(1.03); }.stat-item:hover::after, .stat-item.mobile-hover::after { opacity:1; }.stat-item:hover .stat-icon, .stat-item.mobile-hover .stat-icon { transform:scale(1.18) rotate(-8deg); }
+
 .live-wrap { display:inline-flex; align-items:center; gap:.5rem; }
 .live-dot { width:8px; height:8px; background:var(--red); border-radius:50%; flex-shrink:0; animation:livePulse 1.6s ease-in-out infinite; box-shadow:0 0 10px rgba(194,65,12,.7); }
 @keyframes livePulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.35; transform:scale(.6); } }
@@ -437,11 +409,8 @@ address { font-style:normal; }
 .pop-price { font-family:var(--font-t); font-size:1.3rem; font-weight:700; letter-spacing:-.01em; color:var(--orange-l); line-height:1; }
 .pop-add { width:34px; height:34px; border-radius:var(--r-f); background:linear-gradient(135deg,var(--red),var(--red-d)); color:#fff; font-size:1.2rem; font-weight:700; display:flex; align-items:center; justify-content:center; transition:all var(--tf); box-shadow:0 3px 8px rgba(154,52,18,.3); }
 .pop-add:active { transform:scale(.9); }
-@media (hover:hover) {
-  .pop-card:hover { border-color:rgba(217,119,6,.4); transform:translateY(-8px); box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 18px 36px rgba(60,40,20,.16); }
-  .pop-card:hover .pop-vis img { transform:scale(1.1); }
-  .pop-add:hover { background:linear-gradient(135deg,var(--orange-l),var(--orange)); transform:scale(1.16) rotate(90deg); box-shadow:var(--glow-orange); }
-}
+.pop-card:hover, .pop-card.mobile-hover { border-color:rgba(217,119,6,.4); transform:translateY(-8px); box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 18px 36px rgba(60,40,20,.16); }.pop-card:hover .pop-vis img, .pop-card.mobile-hover .pop-vis img { transform:scale(1.1); }.pop-add:hover, .pop-add.mobile-hover { background:linear-gradient(135deg,var(--orange-l),var(--orange)); transform:scale(1.16) rotate(90deg); box-shadow:var(--glow-orange); }
+
 
 /* MENU */
 .menu-section { background:var(--black); overflow-x:clip; }
@@ -452,13 +421,13 @@ address { font-style:normal; }
 .search-input::placeholder { color:var(--muted2); font-weight:400; }
 .search-input:focus { outline:none; }
 .search-clear { color:var(--muted); transition:color var(--tf); padding:.5rem; display:flex; align-items:center; }
-@media (hover:hover) { .search-clear:hover { color:var(--red); } }
+.search-clear:hover, .search-clear.mobile-hover { color:var(--red); } 
 .filters-wrap { overflow-x:auto; margin-bottom:2.5rem; padding-bottom:.75rem; scrollbar-width:none; }
 .filters-wrap::-webkit-scrollbar { display:none; }
 .filters-track { display:flex; gap:.5rem; min-width:max-content; }
 .filter-btn { padding:.5rem 1.1rem; border-radius:var(--r-f); font-size:.72rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); background:#fff; border:2px solid var(--border); white-space:nowrap; transition:all var(--tf); cursor:pointer; }
 .filter-btn.active { background:linear-gradient(135deg,var(--red),var(--red-d)); border-color:var(--red); color:#fff; box-shadow:var(--glow-red); }
-@media (hover:hover) { .filter-btn:hover { color:var(--off); border-color:var(--orange); } }
+.filter-btn:hover, .filter-btn.mobile-hover { color:var(--off); border-color:var(--orange); } 
 .products-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(270px,100%),1fr)); gap:1.15rem; }
 .product-card {
   position:relative; overflow:hidden; display:flex; flex-direction:column; border-radius:var(--r-lg);
@@ -494,12 +463,8 @@ address { font-style:normal; }
 .product-price { font-family:var(--font-t); font-size:1.4rem; font-weight:700; letter-spacing:-.01em; color:var(--orange-l); line-height:1; }
 .product-add-btn { display:flex; align-items:center; gap:.4rem; padding:.55rem 1.05rem; background:linear-gradient(135deg,var(--red),var(--red-d)); color:#fff; border-radius:var(--r-f); font-size:.7rem; font-weight:900; letter-spacing:.05em; text-transform:uppercase; transition:all var(--tf); white-space:nowrap; flex-shrink:0; box-shadow:0 3px 8px rgba(154,52,18,.3); }
 .product-add-btn:active { transform:scale(.96); }
-@media (hover:hover) {
-  .product-card:hover { border-color:rgba(217,119,6,.35); box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 14px 32px rgba(60,40,20,.14); transform:translateY(-5px); }
-  .product-card:hover::before { transform:scaleY(1); }
-  .product-card:hover .product-vis-img { transform:scale(1.08); }
-  .product-add-btn:hover { background:linear-gradient(135deg,var(--orange-l),var(--orange)); transform:scale(1.06); box-shadow:var(--glow-orange); }
-}
+.product-card:hover, .product-card.mobile-hover { border-color:rgba(217,119,6,.35); box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 14px 32px rgba(60,40,20,.14); transform:translateY(-5px); }.product-card:hover::before, .product-card.mobile-hover::before { transform:scaleY(1); }.product-card:hover .product-vis-img, .product-card.mobile-hover .product-vis-img { transform:scale(1.08); }.product-add-btn:hover, .product-add-btn.mobile-hover { background:linear-gradient(135deg,var(--orange-l),var(--orange)); transform:scale(1.06); box-shadow:var(--glow-orange); }
+
 @keyframes fadeScaleIn { from { opacity:0; transform:scale(.96) translateY(6px); } to { opacity:1; transform:scale(1) translateY(0); } }
 .menu-empty { text-align:center; padding:4rem 0; color:var(--muted); display:flex; flex-direction:column; align-items:center; gap:1rem; }
 .menu-empty span { font-size:3rem; }
@@ -516,7 +481,7 @@ address { font-style:normal; }
 .reviews-count { font-size:.875rem; color:var(--muted); }
 .reviews-marquee-outer { overflow:hidden; -webkit-mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%); mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%); padding:2rem 0; margin-top:1rem; }
 .reviews-marquee-track { display:flex; gap:1rem; width:max-content; animation:marqueeScroll 55s linear infinite; }
-@media (hover:hover) { .reviews-marquee-track:hover { animation-play-state:paused; } }
+.reviews-marquee-track:hover, .reviews-marquee-track.mobile-hover { animation-play-state:paused; } 
 @keyframes marqueeScroll { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
 .review-card { width:310px; background:var(--ink); border:1px solid var(--border); border-radius:var(--r-lg); padding:1.25rem; display:flex; flex-direction:column; gap:.75rem; flex-shrink:0; transition:all .4s var(--ease-o); position:relative; overflow:hidden; }
 .review-card::before { content:''; position:absolute; inset:0; border-radius:inherit; padding:1px; background:linear-gradient(140deg,rgba(184,134,11,0) 20%,rgba(184,134,11,.5),rgba(217,119,6,0) 80%); -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; opacity:0; transition:opacity .4s var(--ease-o); pointer-events:none; }
@@ -530,11 +495,8 @@ address { font-style:normal; }
 .review-text { font-size:.875rem; color:rgba(58,46,29,.82); line-height:1.6; flex:1; }
 .review-source-badge { flex-shrink:0; font-size:.62rem; font-weight:800; letter-spacing:.03em; color:var(--muted); background:rgba(60,40,20,.05); border:1px solid var(--border); border-radius:var(--r-sm); padding:.2rem .5rem; white-space:nowrap; }
 .reviews-cta { text-align:center; padding-top:1rem; }
-@media (hover:hover) {
-  .review-card:hover { border-color:transparent; box-shadow:0 16px 36px rgba(60,40,20,.16); transform:translateY(-5px); }
-  .review-card:hover::before { opacity:1; }
-  .review-card:hover .review-avatar { transform:scale(1.1); }
-}
+.review-card:hover, .review-card.mobile-hover { border-color:transparent; box-shadow:0 16px 36px rgba(60,40,20,.16); transform:translateY(-5px); }.review-card:hover::before, .review-card.mobile-hover::before { opacity:1; }.review-card:hover .review-avatar, .review-card.mobile-hover .review-avatar { transform:scale(1.1); }
+
 /* CLASSIQUES — Full bleed photo cards, liseré épices distinct */
 .classiques-section { background:var(--black); position:relative; }
 .classiques-section::before { content:''; display:block; height:1px; background:linear-gradient(90deg,transparent,var(--red) 40%,var(--orange) 60%,transparent); }
@@ -555,14 +517,8 @@ address { font-style:normal; }
 .classique-desc { font-size:.875rem; color:rgba(255,255,255,.75); line-height:1.5; max-width:90%; }
 .classique-footer { display:flex; align-items:center; justify-content:space-between; gap:.75rem; padding-top:.5rem; border-top:1px solid rgba(255,255,255,.16); }
 .classique-price { font-family:var(--font-t); font-size:1.3rem; font-weight:700; color:#FFD9A8; }
-@media (hover:hover) {
-  .classique-card:hover { transform:translateY(-8px); box-shadow:0 28px 56px rgba(60,40,20,.22); }
-  .classique-card[data-glow="red"]:hover { border-color:rgba(194,65,12,.4); box-shadow:0 28px 56px rgba(60,40,20,.22),0 0 0 1px rgba(194,65,12,.15); }
-  .classique-card[data-glow="cyan"]:hover { border-color:rgba(14,116,144,.4); box-shadow:0 28px 56px rgba(60,40,20,.22),0 0 0 1px rgba(14,116,144,.12); }
-  .classique-card[data-glow="violet"]:hover { border-color:rgba(124,58,45,.4); box-shadow:0 28px 56px rgba(60,40,20,.22),0 0 0 1px rgba(124,58,45,.12); }
-  .classique-card:hover .classique-img img { transform:scale(1.09); }
-  .classique-card:hover .classique-overlay { background:linear-gradient(to top,rgba(42,32,21,.95) 0%,rgba(42,32,21,.55) 45%,rgba(42,32,21,.1) 100%); }
-}
+.classique-card:hover, .classique-card.mobile-hover { transform:translateY(-8px); box-shadow:0 28px 56px rgba(60,40,20,.22); }.classique-card[data-glow="red"]:hover, .classique-card[data-glow="red"].mobile-hover { border-color:rgba(194,65,12,.4); box-shadow:0 28px 56px rgba(60,40,20,.22),0 0 0 1px rgba(194,65,12,.15); }.classique-card[data-glow="cyan"]:hover, .classique-card[data-glow="cyan"].mobile-hover { border-color:rgba(14,116,144,.4); box-shadow:0 28px 56px rgba(60,40,20,.22),0 0 0 1px rgba(14,116,144,.12); }.classique-card[data-glow="violet"]:hover, .classique-card[data-glow="violet"].mobile-hover { border-color:rgba(124,58,45,.4); box-shadow:0 28px 56px rgba(60,40,20,.22),0 0 0 1px rgba(124,58,45,.12); }.classique-card:hover .classique-img img, .classique-card.mobile-hover .classique-img img { transform:scale(1.09); }.classique-card:hover .classique-overlay, .classique-card.mobile-hover .classique-overlay { background:linear-gradient(to top,rgba(42,32,21,.95) 0%,rgba(42,32,21,.55) 45%,rgba(42,32,21,.1) 100%); }
+
 
 /* LOCATION */
 .location-section { background:var(--ink); }
@@ -591,12 +547,8 @@ address { font-style:normal; }
 .location-map { border-radius:var(--r-lg); overflow:hidden; height:480px; border:1px solid rgba(217,119,6,.18); background:var(--surface); position:sticky; top:calc(var(--header-h) + 1rem); box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 12px 28px rgba(60,40,20,.12); filter:sepia(.12) saturate(.85) brightness(1.02) contrast(.98); transition:filter .4s; }
 .location-map iframe { width:100%; height:100%; display:block; }
 .location-cta { display:flex; align-items:center; gap:1rem; justify-content:center; margin-top:2.5rem; flex-wrap:wrap; }
-@media (hover:hover) {
-  .location-card:hover { border-color:rgba(194,65,12,.28); transform:translateY(-3px); box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 12px 26px rgba(60,40,20,.12); }
-  .location-card:hover .location-card-icon { transform:scale(1.12) rotate(-6deg); }
-  .location-phone:hover { color:var(--orange); }
-  .location-map:hover { filter:sepia(.06) saturate(1) brightness(1) contrast(1); }
-}
+.location-card:hover, .location-card.mobile-hover { border-color:rgba(194,65,12,.28); transform:translateY(-3px); box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 12px 26px rgba(60,40,20,.12); }.location-card:hover .location-card-icon, .location-card.mobile-hover .location-card-icon { transform:scale(1.12) rotate(-6deg); }.location-phone:hover, .location-phone.mobile-hover { color:var(--orange); }.location-map:hover, .location-map.mobile-hover { filter:sepia(.06) saturate(1) brightness(1) contrast(1); }
+
 
 /* FAQ */
 .faq-section { background:var(--black); padding:5rem 0; border-top:1px solid var(--border); }
@@ -614,7 +566,7 @@ address { font-style:normal; }
 .faq-item[open] .faq-q::after { transform:rotate(135deg); background:var(--orange); color:#fff; }
 .faq-item[open] .faq-q { color:var(--orange-l); }
 @keyframes faqSlideIn { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }
-@media (hover:hover) { .faq-q:hover { color:var(--orange-l); } }
+.faq-q:hover, .faq-q.mobile-hover { color:var(--orange-l); } 
 .faq-a { padding:0 1.5rem 1.25rem; font-size:.875rem; color:var(--muted); line-height:1.75; animation:faqSlideIn .3s var(--ease-o); }
 .faq-a a { color:var(--orange); text-decoration:underline; text-underline-offset:2px; }
 
@@ -626,7 +578,7 @@ address { font-style:normal; }
 .footer-meta { display:flex; align-items:center; flex-wrap:wrap; gap:.5rem 1rem; font-size:.78rem; color:var(--muted2); }
 .footer-meta a { color:var(--muted); transition:color var(--tf); }
 .footer-rating { display:flex; align-items:center; gap:.4rem; color:var(--muted); }
-@media (hover:hover) { .footer-meta a:hover { color:var(--orange); } }
+.footer-meta a:hover, .footer-meta a.mobile-hover { color:var(--orange); } 
 @media (max-width:640px) { .footer-mini { flex-direction:column; text-align:center; } }
 
 /* FLOATING ACTIONS — FAB commander */
@@ -642,11 +594,8 @@ address { font-style:normal; }
 .fab-lbl { font-size:.72rem; font-weight:900; letter-spacing:.08em; }
 .toast { position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(20px); background:rgba(42,32,21,.95); backdrop-filter:blur(20px); color:#fff; padding:1rem 1.5rem; border-radius:var(--r-f); font-size:.875rem; font-weight:700; white-space:nowrap; z-index:9998; opacity:0; pointer-events:none; transition:all .26s var(--ease-o); border-left:4px solid var(--red); box-shadow:0 8px 24px rgba(60,40,20,.3); max-width:90vw; text-align:center; }
 .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
-@media (hover:hover) {
-  .fab:hover { transform:scale(1.1); }
-  .fab-cart:hover { border-color:var(--orange); color:var(--orange); box-shadow:0 6px 20px rgba(60,40,20,.22),0 0 0 4px rgba(217,119,6,.1); }
-  .fab-cmd:hover { background:#05a856; box-shadow:0 6px 20px rgba(60,40,20,.22),0 0 0 4px rgba(6,193,103,.14); animation-play-state:paused; }
-}
+.fab:hover, .fab.mobile-hover { transform:scale(1.1); }.fab-cart:hover, .fab-cart.mobile-hover { border-color:var(--orange); color:var(--orange); box-shadow:0 6px 20px rgba(60,40,20,.22),0 0 0 4px rgba(217,119,6,.1); }.fab-cmd:hover, .fab-cmd.mobile-hover { background:#05a856; box-shadow:0 6px 20px rgba(60,40,20,.22),0 0 0 4px rgba(6,193,103,.14); animation-play-state:paused; }
+
 
 /* CONFIGURATOR */
 .configurator-overlay { position:fixed; inset:0; background:rgba(42,32,21,.45); backdrop-filter:blur(6px); z-index:1100; display:flex; align-items:flex-end; justify-content:center; opacity:0; pointer-events:none; transition:opacity .26s; }
@@ -668,14 +617,12 @@ address { font-style:normal; }
 .config-option.disabled .config-option-label { opacity:.35; cursor:not-allowed; pointer-events:none; }
 .config-supplements { display:flex; flex-direction:column; gap:.5rem; }
 .config-supplement { cursor:pointer; }
-@media (hover:hover) {
-  .configurator-close:hover { border-color:var(--red); color:var(--red); }
-  .config-option-label:hover { border-color:var(--orange); color:var(--off); }
-}
+.configurator-close:hover, .configurator-close.mobile-hover { border-color:var(--red); color:var(--red); }.config-option-label:hover, .config-option-label.mobile-hover { border-color:var(--orange); color:var(--off); }
+
 .config-supplement input { display:none; }
 .config-supplement-label { display:flex; align-items:center; justify-content:space-between; padding:.75rem 1rem; border-radius:var(--r-md); background:var(--surface); border:2px solid var(--border); cursor:pointer; transition:all var(--tf); }
 .config-supplement input:checked + .config-supplement-label { border-color:var(--orange); background:rgba(217,119,6,.08); }
-@media (hover:hover) { .config-supplement-label:hover { border-color:var(--orange); } }
+.config-supplement-label:hover, .config-supplement-label.mobile-hover { border-color:var(--orange); } 
 .config-supplement-name { font-size:.875rem; font-weight:600; color:var(--off); }
 .config-supplement-price { font-size:.875rem; font-weight:700; color:var(--orange-l); }
 .config-viande-count { display:inline-flex; align-items:center; justify-content:center; min-width:24px; height:24px; background:linear-gradient(135deg,var(--orange),var(--orange-l)); color:#fff; font-size:11px; font-weight:900; border-radius:var(--r-f); padding:0 6px; margin-left:.5rem; }
@@ -796,7 +743,7 @@ address { font-style:normal; }
 <section id="hero" class="hero">
   <div class="hero-bg">
     <div class="hero-bg-grid"></div>
-    <div class="hero-bg-img" style="background-image:url('https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=1800&q=90')"></div>
+    <div class="hero-bg-img" style="background-image:url('images/plateau.jpg')"></div>
     <div class="hero-glow-1"></div><div class="hero-glow-2"></div><div class="hero-glow-3"></div>
     <div class="hero-particles" id="heroParticles"></div>
     <div class="hero-ghost" aria-hidden="true">TOUAREG</div>
@@ -818,9 +765,9 @@ address { font-style:normal; }
       </div>
     </div>
     <div class="hero-photos" aria-hidden="true">
-      <div class="hp hp-1 hp-tacos"><span class="hp-emoji-fb">🌮</span><img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1000&q=92" alt="Tacos Le Touareg" loading="eager" onerror="this.hidden=true"/><div class="hp-steam" aria-hidden="true"><span></span><span></span><span></span></div><div class="hp-label">Tacos XL</div></div>
-      <div class="hp hp-2 hp-kebab"><span class="hp-emoji-fb">🥙</span><img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=1000&q=92" alt="Kebab Le Touareg" loading="eager" onerror="this.hidden=true"/><div class="hp-label">Kebab Grillé</div></div>
-      <div class="hp hp-3 hp-burger"><span class="hp-emoji-fb">🍔</span><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=92" alt="Burger Le Touareg" loading="eager" onerror="this.hidden=true"/><div class="hp-label">Double Burger</div></div>
+      <div class="hp hp-1 hp-tacos"><span class="hp-emoji-fb">🌮</span><img src="images/plateau.jpg" alt="Tacos Le Touareg" loading="eager" onerror="this.hidden=true"/><div class="hp-steam" aria-hidden="true"><span></span><span></span><span></span></div><div class="hp-label">Tacos XL</div></div>
+      <div class="hp hp-2 hp-kebab"><span class="hp-emoji-fb">🥙</span><img src="images/plateau.jpg" alt="Kebab Le Touareg" loading="eager" onerror="this.hidden=true"/><div class="hp-label">Kebab Grillé</div></div>
+      <div class="hp hp-3 hp-burger"><span class="hp-emoji-fb">🍔</span><img src="images/plateau.jpg" alt="Burger Le Touareg" loading="eager" onerror="this.hidden=true"/><div class="hp-label">Double Burger</div></div>
     </div>
   </div>
   <a href="#trust" class="hero-scroll" aria-label="Défiler"><span class="hero-scroll-arrow"></span></a>
@@ -836,7 +783,7 @@ address { font-style:normal; }
     </div>
     <div class="showcase-stage">
       <div class="showcase-step" data-step="0" data-glow="red">
-        <div class="showcase-bg"><img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1800&q=92" alt="" loading="lazy"/></div>
+        <div class="showcase-bg"><img src="images/plateau.jpg" alt="" loading="lazy"/></div>
         <div class="showcase-scrim"></div>
         <div class="showcase-content">
           <span class="showcase-kicker">01 — TACOS</span>
@@ -845,7 +792,7 @@ address { font-style:normal; }
         </div>
       </div>
       <div class="showcase-step" data-step="1" data-glow="cyan">
-        <div class="showcase-bg"><img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=1800&q=92" alt="" loading="lazy"/></div>
+        <div class="showcase-bg"><img src="images/plateau.jpg" alt="" loading="lazy"/></div>
         <div class="showcase-scrim"></div>
         <div class="showcase-content">
           <span class="showcase-kicker">02 — KEBAB</span>
@@ -854,7 +801,7 @@ address { font-style:normal; }
         </div>
       </div>
       <div class="showcase-step" data-step="2" data-glow="violet">
-        <div class="showcase-bg"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1800&q=92" alt="" loading="lazy"/></div>
+        <div class="showcase-bg"><img src="images/plateau.jpg" alt="" loading="lazy"/></div>
         <div class="showcase-scrim"></div>
         <div class="showcase-content">
           <span class="showcase-kicker">03 — BURGER</span>
@@ -932,9 +879,9 @@ address { font-style:normal; }
   <div class="container">
     <header class="section-header"><span class="section-eyebrow reveal">Nos spécialités maison</span><h2 class="section-title reveal">LES CLASSIQUES</h2></header>
     <div class="classiques-grid">
-      <div class="classique-card reveal" data-glow="red"><div class="classique-img"><span class="classique-img-fb">🌮</span><img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1400&q=92" alt="Tacos Le Touareg" loading="lazy" onerror="this.hidden=true"/></div><div class="classique-overlay"></div><div class="classique-content"><div class="classique-badge-wrap"><span class="classique-badge badge-bs">BESTSELLER</span></div><h3 class="classique-name">TACOS</h3><p class="classique-desc">Viande marinée au choix. Sauce fromagère maison. Galette dorée à la presse.</p><div class="classique-footer"><span class="classique-price">Dès 9,10 €</span><button class="btn btn-primary btn-sm" onclick="document.getElementById('heroOrderBtn').click()">Commander</button></div></div></div>
-      <div class="classique-card reveal" data-glow="cyan"><div class="classique-img"><span class="classique-img-fb">🥙</span><img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=1400&q=92" alt="Kebab Le Touareg" loading="lazy" onerror="this.hidden=true"/></div><div class="classique-overlay"></div><div class="classique-content"><div class="classique-badge-wrap"><span class="classique-badge badge-cl">CLASSIQUE</span></div><h3 class="classique-name">KEBAB</h3><p class="classique-desc">Viande grillée à la broche. Crudités fraîches. Sauce au choix. Pain frais.</p><div class="classique-footer"><span class="classique-price">Dès 7,80 €</span><button class="btn btn-primary btn-sm" onclick="document.getElementById('heroOrderBtn').click()">Commander</button></div></div></div>
-      <div class="classique-card reveal" data-glow="violet"><div class="classique-img"><span class="classique-img-fb">🍔</span><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1400&q=92" alt="Burger Le Touareg" loading="lazy" onerror="this.hidden=true"/></div><div class="classique-overlay"></div><div class="classique-content"><div class="classique-badge-wrap"><span class="classique-badge badge-lrd">LOURD</span></div><h3 class="classique-name">BURGERS</h3><p class="classique-desc">Steak épais. Double cheddar fondu. Pain brioché toasté à la perfection.</p><div class="classique-footer"><span class="classique-price">Dès 3,90 €</span><button class="btn btn-primary btn-sm" onclick="document.getElementById('heroOrderBtn').click()">Commander</button></div></div></div>
+      <div class="classique-card reveal" data-glow="red"><div class="classique-img"><span class="classique-img-fb">🌮</span><img src="images/plateau.jpg" alt="Tacos Le Touareg" loading="lazy" onerror="this.hidden=true"/></div><div class="classique-overlay"></div><div class="classique-content"><div class="classique-badge-wrap"><span class="classique-badge badge-bs">BESTSELLER</span></div><h3 class="classique-name">TACOS</h3><p class="classique-desc">Viande marinée au choix. Sauce fromagère maison. Galette dorée à la presse.</p><div class="classique-footer"><span class="classique-price">Dès 9,10 €</span><button class="btn btn-primary btn-sm" onclick="document.getElementById('heroOrderBtn').click()">Commander</button></div></div></div>
+      <div class="classique-card reveal" data-glow="cyan"><div class="classique-img"><span class="classique-img-fb">🥙</span><img src="images/plateau.jpg" alt="Kebab Le Touareg" loading="lazy" onerror="this.hidden=true"/></div><div class="classique-overlay"></div><div class="classique-content"><div class="classique-badge-wrap"><span class="classique-badge badge-cl">CLASSIQUE</span></div><h3 class="classique-name">KEBAB</h3><p class="classique-desc">Viande grillée à la broche. Crudités fraîches. Sauce au choix. Pain frais.</p><div class="classique-footer"><span class="classique-price">Dès 7,80 €</span><button class="btn btn-primary btn-sm" onclick="document.getElementById('heroOrderBtn').click()">Commander</button></div></div></div>
+      <div class="classique-card reveal" data-glow="violet"><div class="classique-img"><span class="classique-img-fb">🍔</span><img src="images/plateau.jpg" alt="Burger Le Touareg" loading="lazy" onerror="this.hidden=true"/></div><div class="classique-overlay"></div><div class="classique-content"><div class="classique-badge-wrap"><span class="classique-badge badge-lrd">LOURD</span></div><h3 class="classique-name">BURGERS</h3><p class="classique-desc">Steak épais. Double cheddar fondu. Pain brioché toasté à la perfection.</p><div class="classique-footer"><span class="classique-price">Dès 3,90 €</span><button class="btn btn-primary btn-sm" onclick="document.getElementById('heroOrderBtn').click()">Commander</button></div></div></div>
     </div>
   </div>
 </section>
@@ -1079,139 +1026,139 @@ const CATEGORIES = [
 const PRODUCTS = [
 
   /* ── MENUS SANDWICHS ── */
-  { id:1,  img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Menu Sandwich Kebab',          desc:'Kebab de viande, salade, tomates et oignons',                price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
-  { id:2,  img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Menu Sandwich Poulet Curry',   desc:'Poulet mariné, sauce curry et fromage',                      price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
-  { id:3,  img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Menu Sandwich Paprika',        desc:'Poulet mariné, paprika et crème fraîche',                    price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
-  { id:4,  img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Menu Sandwich Mixte',          desc:'2 viandes au choix et fromage',                              price:10.40, cat:'menus-sandwiches', emoji:'🥙', config:'sandwich2', menu:true },
-  { id:5,  img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Menu Sandwich Cordon Bleu',    desc:'Poulet mariné, sauce curry et fromage',                      price:8.45,  cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
-  { id:6,  img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Menu Sandwich Double Crocodile',desc:'2 steaks 45 g, cordon bleu et fromage',                     price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
-  { id:7,  img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Menu Sandwich Boursin',        desc:'Poulet mariné, sauce curry et fromage',                      price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
-  { id:8,  img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Menu Sandwich Shempa',         desc:'Poulet, crème fraîche, fromage râpé et champignons',         price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
-  { id:9,  img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Menu Sandwich Touareg',        desc:'Steak viande hachée, œuf, fromage, olives, oignons et tomates', price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
-  { id:10, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Menu Sandwich Kefta',          desc:'2 steaks, viande hachée et fromage',                         price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
-  { id:11, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Menu Sandwich Brochette d\'Agneau', desc:'Brochette d\'agneau et fromage',                        price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
-  { id:12, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Menu Sandwich Américain',      desc:'2 steaks 45 g, œuf et fromage',                              price:10.40, cat:'menus-sandwiches', emoji:'🥙', popular:true , config:'menu-fixe', menu:true },
-  { id:13, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Menu Sandwich Forma',          desc:'Viande au choix, crème fraîche, fromage râpé, lardons, œuf', price:11.05, cat:'menus-sandwiches', emoji:'🥙', config:'sandwich', menu:true },
-  { id:14, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Menu Sandwich Zinger Rolo',    desc:'Pita poulet façon KFC, bacon de dinde, steak 45 g et fromage', price:11.05, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
-  { id:15, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Menu Sandwich Spécial',        desc:'Pita, viande marinée au choix, oignons frits et cordon bleu', price:11.05, cat:'menus-sandwiches', emoji:'🥙', config:'sandwich', menu:true },
+  { id:1,  img:'images/plateau.jpg', name:'Menu Sandwich Kebab',          desc:'Kebab de viande, salade, tomates et oignons',                price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:2,  img:'images/plateau.jpg', name:'Menu Sandwich Poulet Curry',   desc:'Poulet mariné, sauce curry et fromage',                      price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:3,  img:'images/plateau.jpg', name:'Menu Sandwich Paprika',        desc:'Poulet mariné, paprika et crème fraîche',                    price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:4,  img:'images/plateau.jpg', name:'Menu Sandwich Mixte',          desc:'2 viandes au choix et fromage',                              price:10.40, cat:'menus-sandwiches', emoji:'🥙', config:'sandwich2', menu:true },
+  { id:5,  img:'images/plateau.jpg', name:'Menu Sandwich Cordon Bleu',    desc:'Poulet mariné, sauce curry et fromage',                      price:8.45,  cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:6,  img:'images/plateau.jpg', name:'Menu Sandwich Double Crocodile',desc:'2 steaks 45 g, cordon bleu et fromage',                     price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:7,  img:'images/plateau.jpg', name:'Menu Sandwich Boursin',        desc:'Poulet mariné, sauce curry et fromage',                      price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:8,  img:'images/plateau.jpg', name:'Menu Sandwich Shempa',         desc:'Poulet, crème fraîche, fromage râpé et champignons',         price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:9,  img:'images/plateau.jpg', name:'Menu Sandwich Touareg',        desc:'Steak viande hachée, œuf, fromage, olives, oignons et tomates', price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:10, img:'images/plateau.jpg', name:'Menu Sandwich Kefta',          desc:'2 steaks, viande hachée et fromage',                         price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:11, img:'images/plateau.jpg', name:'Menu Sandwich Brochette d\'Agneau', desc:'Brochette d\'agneau et fromage',                        price:10.40, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:12, img:'images/plateau.jpg', name:'Menu Sandwich Américain',      desc:'2 steaks 45 g, œuf et fromage',                              price:10.40, cat:'menus-sandwiches', emoji:'🥙', popular:true , config:'menu-fixe', menu:true },
+  { id:13, img:'images/plateau.jpg', name:'Menu Sandwich Forma',          desc:'Viande au choix, crème fraîche, fromage râpé, lardons, œuf', price:11.05, cat:'menus-sandwiches', emoji:'🥙', config:'sandwich', menu:true },
+  { id:14, img:'images/plateau.jpg', name:'Menu Sandwich Zinger Rolo',    desc:'Pita poulet façon KFC, bacon de dinde, steak 45 g et fromage', price:11.05, cat:'menus-sandwiches', emoji:'🥙' , config:'menu-fixe', menu:true },
+  { id:15, img:'images/plateau.jpg', name:'Menu Sandwich Spécial',        desc:'Pita, viande marinée au choix, oignons frits et cordon bleu', price:11.05, cat:'menus-sandwiches', emoji:'🥙', config:'sandwich', menu:true },
 
   /* ── MENUS PANINIS ── */
-  { id:16, img:'https://images.unsplash.com/photo-1649688423692-308d2fc1027d?auto=format&fit=crop&w=900&q=90', name:'Menu Panini Thon',      desc:'Panini grillé garni de thon',                    price:8.45, cat:'menus-paninis', emoji:'🥪' , config:'menu-fixe', menu:true },
-  { id:17, img:'https://images.unsplash.com/photo-1475090169767-40ed8d18f67d?auto=format&fit=crop&w=900&q=90', name:'Menu Panini Fromage',   desc:'Panini garni de fromage fondu',                  price:8.45, cat:'menus-paninis', emoji:'🥪', popular:true , config:'menu-fixe', menu:true },
-  { id:18, img:'https://images.unsplash.com/photo-1649688423692-308d2fc1027d?auto=format&fit=crop&w=900&q=90', name:'Menu Panini Saumon',    desc:'Panini garni de saumon',                         price:8.45, cat:'menus-paninis', emoji:'🥪' , config:'menu-fixe', menu:true },
-  { id:19, img:'https://images.unsplash.com/photo-1481070414801-51fd732d7184?auto=format&fit=crop&w=900&q=90', name:'Menu Panini Bolognaise',desc:'Panini garni de sauce bolognaise, pain pressé et chaud', price:8.45, cat:'menus-paninis', emoji:'🥪' , config:'menu-fixe', menu:true },
-  { id:20, img:'https://images.unsplash.com/photo-1481070414801-51fd732d7184?auto=format&fit=crop&w=900&q=90', name:'Menu Panini 1 Viande',  desc:'Panini garni d\'1 viande au choix',              price:8.45, cat:'menus-paninis', emoji:'🥪', config:'panini', menu:true },
+  { id:16, img:'images/plateau.jpg', name:'Menu Panini Thon',      desc:'Panini grillé garni de thon',                    price:8.45, cat:'menus-paninis', emoji:'🥪' , config:'menu-fixe', menu:true },
+  { id:17, img:'images/plateau.jpg', name:'Menu Panini Fromage',   desc:'Panini garni de fromage fondu',                  price:8.45, cat:'menus-paninis', emoji:'🥪', popular:true , config:'menu-fixe', menu:true },
+  { id:18, img:'images/plateau.jpg', name:'Menu Panini Saumon',    desc:'Panini garni de saumon',                         price:8.45, cat:'menus-paninis', emoji:'🥪' , config:'menu-fixe', menu:true },
+  { id:19, img:'images/plateau.jpg', name:'Menu Panini Bolognaise',desc:'Panini garni de sauce bolognaise, pain pressé et chaud', price:8.45, cat:'menus-paninis', emoji:'🥪' , config:'menu-fixe', menu:true },
+  { id:20, img:'images/plateau.jpg', name:'Menu Panini 1 Viande',  desc:'Panini garni d\'1 viande au choix',              price:8.45, cat:'menus-paninis', emoji:'🥪', config:'panini', menu:true },
 
   /* ── MENUS TACOS ── */
   { id:21, name:'Menu Tacos L',  desc:'1 viande au choix, sauce fromagère maison',   price:11.05, cat:'menus-tacos', emoji:'🌮', config:'tacos-l', popular:true, menu:true },
   { id:22, name:'Menu Tacos XL', desc:'2 viandes au choix, sauce fromagère maison',  price:13.00, cat:'menus-tacos', emoji:'🌮', config:'tacos-xl', popular:true, menu:true },
 
   /* ── MENUS BURGERS ── */
-  { id:23, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Menu Double Gros Hamburger',      desc:'2 steaks 180 g, 2 fromages, salade et tomates',   price:13.00, cat:'menus-burgers', emoji:'🍔', popular:true , config:'menu-fixe', menu:true },
-  { id:24, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Menu Gros Hamburger',              desc:'1 steak 180 g, 2 fromages, salade et tomates',   price:10.40, cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
-  { id:25, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Menu Double Gros Hamburger Plus',  desc:'2 steaks 180 g, œuf et 2 fromages',              price:15.60, cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
-  { id:26, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Menu Cheeseburger',                desc:'1 steak et fromage',                              price:7.15,  cat:'menus-burgers', emoji:'🍔', popular:true , config:'menu-fixe', menu:true },
-  { id:27, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Menu Double Cheeseburger',         desc:'2 steaks et 2 fromages',                          price:8.45,  cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
-  { id:28, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Menu Burger de Poulet',            desc:'Poulet pané et fromage',                          price:7.80,  cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
-  { id:29, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Menu Zinger Burger',                desc:'Poulet façon KFC et fromage',                     price:8.45,  cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
-  { id:30, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Menu Burger de Poisson',           desc:'Poisson pané, salade, oignons et fromage',        price:7.15,  cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
-  { id:31, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Menu Burger Maison',                desc:'Steak viande hachée 100 g, fromage, raclette, salade, tomates et oignons', price:9.10, cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
-  { id:32, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Menu Hamburger Végétarien',        desc:'Steak de pommes de terre, œuf et fromage',        price:7.80,  cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
+  { id:23, img:'images/plateau.jpg', name:'Menu Double Gros Hamburger',      desc:'2 steaks 180 g, 2 fromages, salade et tomates',   price:13.00, cat:'menus-burgers', emoji:'🍔', popular:true , config:'menu-fixe', menu:true },
+  { id:24, img:'images/plateau.jpg', name:'Menu Gros Hamburger',              desc:'1 steak 180 g, 2 fromages, salade et tomates',   price:10.40, cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
+  { id:25, img:'images/plateau.jpg', name:'Menu Double Gros Hamburger Plus',  desc:'2 steaks 180 g, œuf et 2 fromages',              price:15.60, cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
+  { id:26, img:'images/plateau.jpg', name:'Menu Cheeseburger',                desc:'1 steak et fromage',                              price:7.15,  cat:'menus-burgers', emoji:'🍔', popular:true , config:'menu-fixe', menu:true },
+  { id:27, img:'images/plateau.jpg', name:'Menu Double Cheeseburger',         desc:'2 steaks et 2 fromages',                          price:8.45,  cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
+  { id:28, img:'images/plateau.jpg', name:'Menu Burger de Poulet',            desc:'Poulet pané et fromage',                          price:7.80,  cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
+  { id:29, img:'images/plateau.jpg', name:'Menu Zinger Burger',                desc:'Poulet façon KFC et fromage',                     price:8.45,  cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
+  { id:30, img:'images/plateau.jpg', name:'Menu Burger de Poisson',           desc:'Poisson pané, salade, oignons et fromage',        price:7.15,  cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
+  { id:31, img:'images/plateau.jpg', name:'Menu Burger Maison',                desc:'Steak viande hachée 100 g, fromage, raclette, salade, tomates et oignons', price:9.10, cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
+  { id:32, img:'images/plateau.jpg', name:'Menu Hamburger Végétarien',        desc:'Steak de pommes de terre, œuf et fromage',        price:7.80,  cat:'menus-burgers', emoji:'🍔' , config:'menu-fixe', menu:true },
 
   /* ── MENUS PIZZA TURQUE ── */
   { id:33, name:'Menu Pizza Turque', desc:'Spécialité turque de pâte garnie à la pizza',  price:7.80, cat:'menus-pizza-turque', emoji:'🫓', popular:true , config:'menu-fixe', menu:true },
 
   /* ── MENUS CROQUES ── */
-  { id:34, img:'https://images.unsplash.com/photo-1737513916865-63c7fd3b67a7?auto=format&fit=crop&w=900&q=90', name:'Menu Croque Monsieur', desc:'Pain de mie, jambon et fromage', price:6.50, cat:'menus-croques', emoji:'🧀' , config:'menu-fixe', menu:true },
+  { id:34, img:'images/plateau.jpg', name:'Menu Croque Monsieur', desc:'Pain de mie, jambon et fromage', price:6.50, cat:'menus-croques', emoji:'🧀' , config:'menu-fixe', menu:true },
 
   /* ── TEX-MEX ── */
-  { id:35, img:'https://images.unsplash.com/photo-1657271511865-f610b280dca4?auto=format&fit=crop&w=900&q=90', name:'Pépites',           desc:'3 pièces',   price:2.60, cat:'tex-mex', emoji:'🍗' },
+  { id:35, img:'images/plateau.jpg', name:'Pépites',           desc:'3 pièces',   price:2.60, cat:'tex-mex', emoji:'🍗' },
   { id:36, name:'Appels d\'offres',  desc:'3 pièces',   price:5.20, cat:'tex-mex', emoji:'🌶️' },
   { id:37, name:'Camembert',         desc:'3 pièces',   price:2.60, cat:'tex-mex', emoji:'🧀', popular:true },
   { id:38, name:'Jalapenos',         desc:'3 pièces',   price:3.90, cat:'tex-mex', emoji:'🌶️' },
   { id:39, name:'Rondelles d\'Oignon',desc:'3 pièces',  price:2.60, cat:'tex-mex', emoji:'🧅' },
 
   /* ── SALADES ── */
-  { id:40, img:'https://images.unsplash.com/photo-1612488261779-be3483951c46?auto=format&fit=crop&w=900&q=90', name:'Salade César',   desc:'Salade, tomates, poulet frit, copeaux de fromage et maïs', price:7.80, cat:'salades', emoji:'🥗' },
-  { id:41, img:'https://images.unsplash.com/photo-1612488261779-be3483951c46?auto=format&fit=crop&w=900&q=90', name:'Salade Niçoise', desc:'Salade, tomates, olives, maïs et thon',                     price:6.50, cat:'salades', emoji:'🥗' },
-  { id:42, img:'https://images.unsplash.com/photo-1612488261779-be3483951c46?auto=format&fit=crop&w=900&q=90', name:'Salade Mixte',   desc:'Salade, tomates et olives',                                 price:5.20, cat:'salades', emoji:'🥗' },
+  { id:40, img:'images/plateau.jpg', name:'Salade César',   desc:'Salade, tomates, poulet frit, copeaux de fromage et maïs', price:7.80, cat:'salades', emoji:'🥗' },
+  { id:41, img:'images/plateau.jpg', name:'Salade Niçoise', desc:'Salade, tomates, olives, maïs et thon',                     price:6.50, cat:'salades', emoji:'🥗' },
+  { id:42, img:'images/plateau.jpg', name:'Salade Mixte',   desc:'Salade, tomates et olives',                                 price:5.20, cat:'salades', emoji:'🥗' },
 
   /* ── PIZZAS (taille senior) ── */
-  { id:43, img:'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=90', name:'Pizza Margherita',   desc:'Base au choix, fromage et oignons — taille senior',                          price:9.75, cat:'pizzas', emoji:'🍕', popular:true },
-  { id:44, img:'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=900&q=90', name:'Pizza Touareg',      desc:'Base au choix, fromage, poulet, sauce fromagère et pommes de terre — taille senior', price:9.75, cat:'pizzas', emoji:'🍕' },
-  { id:45, img:'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=900&q=90', name:'Pizza Batteuse',     desc:'Base au choix, fromage, viande hachée, champignons et œuf — taille senior', price:9.75, cat:'pizzas', emoji:'🍕' },
-  { id:46, img:'https://images.unsplash.com/photo-1625401514458-6c8a5e7d55da?auto=format&fit=crop&w=900&q=90', name:'Pizza Orientale',    desc:'Base au choix, fromage, oignons, olives, merguez et œuf — taille senior',   price:9.75, cat:'pizzas', emoji:'🍕' },
-  { id:47, img:'https://images.unsplash.com/photo-1625401514458-6c8a5e7d55da?auto=format&fit=crop&w=900&q=90', name:'Pizza Saisons',      desc:'Base au choix, fromage, jambon dinde, olives, poivrons et champignons — taille senior', price:9.75, cat:'pizzas', emoji:'🍕' },
-  { id:48, img:'https://images.unsplash.com/photo-1625401514458-6c8a5e7d55da?auto=format&fit=crop&w=900&q=90', name:'Pizza Végétarienne', desc:'Base au choix, fromage, olives, poivrons, champignons et oignons — taille senior', price:9.75, cat:'pizzas', emoji:'🍕' },
-  { id:49, img:'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=90', name:'Pizza Chèvre Miel',  desc:'Base au choix, fromage, chèvre et miel — taille senior',                    price:9.75, cat:'pizzas', emoji:'🍕', popular:true },
-  { id:50, img:'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=900&q=90', name:'Pizza au Poulet',    desc:'Base au choix, fromage, poulet et pommes de terre — taille senior',         price:9.75, cat:'pizzas', emoji:'🍕' },
-  { id:51, img:'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=900&q=90', name:'Pizza au Saumon',    desc:'Base au choix, fromage, saumon et pommes de terre — taille senior',        price:9.75, cat:'pizzas', emoji:'🍕' },
-  { id:52, img:'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=900&q=90', name:'Pizza Thon',         desc:'Base au choix, fromage, thon et olives — taille senior',                    price:9.75, cat:'pizzas', emoji:'🍕' },
-  { id:53, img:'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=900&q=90', name:'Pizza 3 Viandes',    desc:'Base et 3 viandes au choix et fromage — taille senior',                    price:9.75, cat:'pizzas', emoji:'🍕', popular:true, config:'pizza-3v' },
+  { id:43, img:'images/plateau.jpg', name:'Pizza Margherita',   desc:'Base au choix, fromage et oignons — taille senior',                          price:9.75, cat:'pizzas', emoji:'🍕', popular:true },
+  { id:44, img:'images/plateau.jpg', name:'Pizza Touareg',      desc:'Base au choix, fromage, poulet, sauce fromagère et pommes de terre — taille senior', price:9.75, cat:'pizzas', emoji:'🍕' },
+  { id:45, img:'images/plateau.jpg', name:'Pizza Batteuse',     desc:'Base au choix, fromage, viande hachée, champignons et œuf — taille senior', price:9.75, cat:'pizzas', emoji:'🍕' },
+  { id:46, img:'images/plateau.jpg', name:'Pizza Orientale',    desc:'Base au choix, fromage, oignons, olives, merguez et œuf — taille senior',   price:9.75, cat:'pizzas', emoji:'🍕' },
+  { id:47, img:'images/plateau.jpg', name:'Pizza Saisons',      desc:'Base au choix, fromage, jambon dinde, olives, poivrons et champignons — taille senior', price:9.75, cat:'pizzas', emoji:'🍕' },
+  { id:48, img:'images/plateau.jpg', name:'Pizza Végétarienne', desc:'Base au choix, fromage, olives, poivrons, champignons et oignons — taille senior', price:9.75, cat:'pizzas', emoji:'🍕' },
+  { id:49, img:'images/plateau.jpg', name:'Pizza Chèvre Miel',  desc:'Base au choix, fromage, chèvre et miel — taille senior',                    price:9.75, cat:'pizzas', emoji:'🍕', popular:true },
+  { id:50, img:'images/plateau.jpg', name:'Pizza au Poulet',    desc:'Base au choix, fromage, poulet et pommes de terre — taille senior',         price:9.75, cat:'pizzas', emoji:'🍕' },
+  { id:51, img:'images/plateau.jpg', name:'Pizza au Saumon',    desc:'Base au choix, fromage, saumon et pommes de terre — taille senior',        price:9.75, cat:'pizzas', emoji:'🍕' },
+  { id:52, img:'images/plateau.jpg', name:'Pizza Thon',         desc:'Base au choix, fromage, thon et olives — taille senior',                    price:9.75, cat:'pizzas', emoji:'🍕' },
+  { id:53, img:'images/plateau.jpg', name:'Pizza 3 Viandes',    desc:'Base et 3 viandes au choix et fromage — taille senior',                    price:9.75, cat:'pizzas', emoji:'🍕', popular:true, config:'pizza-3v' },
 
   /* ── TACOS SEULS ── */
   { id:54, name:'Tacos L',  desc:'1 viande au choix, sauce maison',            price:9.10,  cat:'tacos', emoji:'🌮', config:'tacos-l' },
   { id:55, name:'Tacos XL', desc:'2 viandes au choix, sauce fromagère maison', price:10.40, cat:'tacos', emoji:'🌮', config:'tacos-xl', popular:true },
 
   /* ── BURGERS SEULS ── */
-  { id:56, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Double Gros Hamburger',     desc:'2 steaks 180 g, 2 fromages, salade et tomates', price:10.40, cat:'burgers', emoji:'🍔', popular:true },
-  { id:57, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Gros Hamburger',            desc:'1 steak 180 g, 2 fromages, salade et tomates',  price:7.80,  cat:'burgers', emoji:'🍔' },
-  { id:58, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Double Gros Hamburger Plus',desc:'2 steaks 180 g, œuf et 2 fromages',              price:13.00, cat:'burgers', emoji:'🍔' },
-  { id:59, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Burger au Fromage',         desc:'1 steak et fromage',                             price:3.90,  cat:'burgers', emoji:'🍔', popular:true },
-  { id:60, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Double Cheeseburger',       desc:'2 steaks et 2 fromages',                         price:5.20,  cat:'burgers', emoji:'🍔', popular:true },
-  { id:61, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Burger de Poulet',          desc:'Poulet pané et fromage',                         price:5.20,  cat:'burgers', emoji:'🍔' },
-  { id:62, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Burger Zinger',              desc:'Poulet façon KFC et fromage',                    price:5.85,  cat:'burgers', emoji:'🍔' },
-  { id:63, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Burger de Poisson',         desc:'Poisson pané, salade, oignons et fromage',       price:4.55,  cat:'burgers', emoji:'🍔' },
-  { id:64, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Maison de Hamburgers',      desc:'Steak viande hachée 100 g, fromage, raclette, salade, tomates et oignons', price:7.15, cat:'burgers', emoji:'🍔' },
-  { id:65, img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=900&q=90', name:'Burger Végétarien',         desc:'Steak de pommes de terre, œuf et fromage',       price:5.20,  cat:'burgers', emoji:'🍔' },
+  { id:56, img:'images/plateau.jpg', name:'Double Gros Hamburger',     desc:'2 steaks 180 g, 2 fromages, salade et tomates', price:10.40, cat:'burgers', emoji:'🍔', popular:true },
+  { id:57, img:'images/plateau.jpg', name:'Gros Hamburger',            desc:'1 steak 180 g, 2 fromages, salade et tomates',  price:7.80,  cat:'burgers', emoji:'🍔' },
+  { id:58, img:'images/plateau.jpg', name:'Double Gros Hamburger Plus',desc:'2 steaks 180 g, œuf et 2 fromages',              price:13.00, cat:'burgers', emoji:'🍔' },
+  { id:59, img:'images/plateau.jpg', name:'Burger au Fromage',         desc:'1 steak et fromage',                             price:3.90,  cat:'burgers', emoji:'🍔', popular:true },
+  { id:60, img:'images/plateau.jpg', name:'Double Cheeseburger',       desc:'2 steaks et 2 fromages',                         price:5.20,  cat:'burgers', emoji:'🍔', popular:true },
+  { id:61, img:'images/plateau.jpg', name:'Burger de Poulet',          desc:'Poulet pané et fromage',                         price:5.20,  cat:'burgers', emoji:'🍔' },
+  { id:62, img:'images/plateau.jpg', name:'Burger Zinger',              desc:'Poulet façon KFC et fromage',                    price:5.85,  cat:'burgers', emoji:'🍔' },
+  { id:63, img:'images/plateau.jpg', name:'Burger de Poisson',         desc:'Poisson pané, salade, oignons et fromage',       price:4.55,  cat:'burgers', emoji:'🍔' },
+  { id:64, img:'images/plateau.jpg', name:'Maison de Hamburgers',      desc:'Steak viande hachée 100 g, fromage, raclette, salade, tomates et oignons', price:7.15, cat:'burgers', emoji:'🍔' },
+  { id:65, img:'images/plateau.jpg', name:'Burger Végétarien',         desc:'Steak de pommes de terre, œuf et fromage',       price:5.20,  cat:'burgers', emoji:'🍔' },
 
   /* ── SANDWICHS SEULS ── */
-  { id:66, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Sandwich Poulet Curry',   desc:'Poulet mariné, sauce curry et fromage',                       price:7.80, cat:'sandwiches', emoji:'🥙' },
-  { id:67, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Sandwich Kebab',          desc:'Kebab de viande, salade, tomates et oignons',                 price:7.80, cat:'sandwiches', emoji:'🥙', popular:true },
-  { id:68, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Sandwich Paprika',        desc:'Poulet mariné, paprika et crème fraîche',                     price:7.80, cat:'sandwiches', emoji:'🥙' },
-  { id:69, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Sandwich Mixte',          desc:'2 viandes au choix et fromage',                               price:7.80, cat:'sandwiches', emoji:'🥙', config:'sandwich2', popular:true },
-  { id:70, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Sandwich Cordon Bleu',    desc:'Poulet mariné, sauce curry et fromage',                       price:6.50, cat:'sandwiches', emoji:'🥙', popular:true },
-  { id:71, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Sandwich Double Crocodile',desc:'2 steaks 45 g, cordon bleu et fromage',                      price:7.80, cat:'sandwiches', emoji:'🥙' },
-  { id:72, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Sandwich Boursin',        desc:'Poulet mariné, sauce curry et fromage',                       price:7.80, cat:'sandwiches', emoji:'🥙' },
-  { id:73, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Sandwich Shempa',         desc:'Poulet, crème fraîche, fromage râpé et champignons',          price:7.80, cat:'sandwiches', emoji:'🥙' },
-  { id:74, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Sandwich Touareg',        desc:'Steak viande hachée, œuf, fromage, olives, oignons et tomates', price:7.80, cat:'sandwiches', emoji:'🥙' },
-  { id:75, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Sandwich Kefta',          desc:'2 steaks, viande hachée et fromage',                          price:7.80, cat:'sandwiches', emoji:'🥙' },
-  { id:76, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Sandwich Brochette d\'Agneau', desc:'Brochette d\'agneau et fromage',                         price:7.80, cat:'sandwiches', emoji:'🥙' },
-  { id:77, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Sandwich Américain',      desc:'2 steaks 45 g, œuf et fromage',                               price:9.10, cat:'sandwiches', emoji:'🥙', popular:true },
-  { id:78, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Sandwich Forme',          desc:'Viande au choix, crème fraîche, fromage râpé, lardons, œuf',  price:9.10, cat:'sandwiches', emoji:'🥙', config:'sandwich' },
-  { id:79, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Sandwich Zinger Rolo',    desc:'Pita poulet façon KFC, bacon de dinde, steak 45 g et fromage', price:9.10, cat:'sandwiches', emoji:'🥙' },
-  { id:80, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Sandwich Spécial',        desc:'Pita, viande marinée au choix, oignons frits et cordon bleu',price:9.10, cat:'sandwiches', emoji:'🥙', config:'sandwich' },
+  { id:66, img:'images/plateau.jpg', name:'Sandwich Poulet Curry',   desc:'Poulet mariné, sauce curry et fromage',                       price:7.80, cat:'sandwiches', emoji:'🥙' },
+  { id:67, img:'images/plateau.jpg', name:'Sandwich Kebab',          desc:'Kebab de viande, salade, tomates et oignons',                 price:7.80, cat:'sandwiches', emoji:'🥙', popular:true },
+  { id:68, img:'images/plateau.jpg', name:'Sandwich Paprika',        desc:'Poulet mariné, paprika et crème fraîche',                     price:7.80, cat:'sandwiches', emoji:'🥙' },
+  { id:69, img:'images/plateau.jpg', name:'Sandwich Mixte',          desc:'2 viandes au choix et fromage',                               price:7.80, cat:'sandwiches', emoji:'🥙', config:'sandwich2', popular:true },
+  { id:70, img:'images/plateau.jpg', name:'Sandwich Cordon Bleu',    desc:'Poulet mariné, sauce curry et fromage',                       price:6.50, cat:'sandwiches', emoji:'🥙', popular:true },
+  { id:71, img:'images/plateau.jpg', name:'Sandwich Double Crocodile',desc:'2 steaks 45 g, cordon bleu et fromage',                      price:7.80, cat:'sandwiches', emoji:'🥙' },
+  { id:72, img:'images/plateau.jpg', name:'Sandwich Boursin',        desc:'Poulet mariné, sauce curry et fromage',                       price:7.80, cat:'sandwiches', emoji:'🥙' },
+  { id:73, img:'images/plateau.jpg', name:'Sandwich Shempa',         desc:'Poulet, crème fraîche, fromage râpé et champignons',          price:7.80, cat:'sandwiches', emoji:'🥙' },
+  { id:74, img:'images/plateau.jpg', name:'Sandwich Touareg',        desc:'Steak viande hachée, œuf, fromage, olives, oignons et tomates', price:7.80, cat:'sandwiches', emoji:'🥙' },
+  { id:75, img:'images/plateau.jpg', name:'Sandwich Kefta',          desc:'2 steaks, viande hachée et fromage',                          price:7.80, cat:'sandwiches', emoji:'🥙' },
+  { id:76, img:'images/plateau.jpg', name:'Sandwich Brochette d\'Agneau', desc:'Brochette d\'agneau et fromage',                         price:7.80, cat:'sandwiches', emoji:'🥙' },
+  { id:77, img:'images/plateau.jpg', name:'Sandwich Américain',      desc:'2 steaks 45 g, œuf et fromage',                               price:9.10, cat:'sandwiches', emoji:'🥙', popular:true },
+  { id:78, img:'images/plateau.jpg', name:'Sandwich Forme',          desc:'Viande au choix, crème fraîche, fromage râpé, lardons, œuf',  price:9.10, cat:'sandwiches', emoji:'🥙', config:'sandwich' },
+  { id:79, img:'images/plateau.jpg', name:'Sandwich Zinger Rolo',    desc:'Pita poulet façon KFC, bacon de dinde, steak 45 g et fromage', price:9.10, cat:'sandwiches', emoji:'🥙' },
+  { id:80, img:'images/plateau.jpg', name:'Sandwich Spécial',        desc:'Pita, viande marinée au choix, oignons frits et cordon bleu',price:9.10, cat:'sandwiches', emoji:'🥙', config:'sandwich' },
 
   /* ── ASSIETTES ── */
-  { id:81, img:'https://images.unsplash.com/photo-1676300184878-02199c0d02f9?auto=format&fit=crop&w=900&q=90', name:'Assiette Classique', desc:'1 viande au choix',   price:13.00, cat:'assiettes', emoji:'🍽️', config:'sandwich' },
-  { id:82, img:'https://images.unsplash.com/photo-1676300184878-02199c0d02f9?auto=format&fit=crop&w=900&q=90', name:'Assiette Mixte',     desc:'4 viandes au choix',  price:14.30, cat:'assiettes', emoji:'🍽️', config:'mixte', popular:true },
+  { id:81, img:'images/plateau.jpg', name:'Assiette Classique', desc:'1 viande au choix',   price:13.00, cat:'assiettes', emoji:'🍽️', config:'sandwich' },
+  { id:82, img:'images/plateau.jpg', name:'Assiette Mixte',     desc:'4 viandes au choix',  price:14.30, cat:'assiettes', emoji:'🍽️', config:'mixte', popular:true },
 
   /* ── PIZZA TURQUE ── */
   { id:83, name:'Pizza Turque', desc:'Pâte fine façon turque, garniture et assaisonnement traditionnels', price:5.85, cat:'pizza-turque', emoji:'🫓' },
 
   /* ── PANINIS ── */
-  { id:84, img:'https://images.unsplash.com/photo-1649688423692-308d2fc1027d?auto=format&fit=crop&w=900&q=90', name:'Panini Thon',       desc:'Panini pressé, garni de thon',            price:5.85, cat:'paninis', emoji:'🥪' },
-  { id:85, img:'https://images.unsplash.com/photo-1475090169767-40ed8d18f67d?auto=format&fit=crop&w=900&q=90', name:'Panini au Fromage', desc:'Panini grillé, fondu au fromage',         price:5.85, cat:'paninis', emoji:'🥪' },
-  { id:86, img:'https://images.unsplash.com/photo-1649688423692-308d2fc1027d?auto=format&fit=crop&w=900&q=90', name:'Panini au Saumon',  desc:'Pain panini pressé garni de saumon',      price:5.85, cat:'paninis', emoji:'🥪' },
-  { id:87, img:'https://images.unsplash.com/photo-1481070414801-51fd732d7184?auto=format&fit=crop&w=900&q=90', name:'Panini Bolognaise', desc:'Panini garni de sauce bolognaise, pain pressé et chaud', price:5.85, cat:'paninis', emoji:'🥪' },
-  { id:88, img:'https://images.unsplash.com/photo-1481070414801-51fd732d7184?auto=format&fit=crop&w=900&q=90', name:'Panini 1 Viande',   desc:'1 viande au choix',                        price:5.85, cat:'paninis', emoji:'🥪', config:'panini' },
+  { id:84, img:'images/plateau.jpg', name:'Panini Thon',       desc:'Panini pressé, garni de thon',            price:5.85, cat:'paninis', emoji:'🥪' },
+  { id:85, img:'images/plateau.jpg', name:'Panini au Fromage', desc:'Panini grillé, fondu au fromage',         price:5.85, cat:'paninis', emoji:'🥪' },
+  { id:86, img:'images/plateau.jpg', name:'Panini au Saumon',  desc:'Pain panini pressé garni de saumon',      price:5.85, cat:'paninis', emoji:'🥪' },
+  { id:87, img:'images/plateau.jpg', name:'Panini Bolognaise', desc:'Panini garni de sauce bolognaise, pain pressé et chaud', price:5.85, cat:'paninis', emoji:'🥪' },
+  { id:88, img:'images/plateau.jpg', name:'Panini 1 Viande',   desc:'1 viande au choix',                        price:5.85, cat:'paninis', emoji:'🥪', config:'panini' },
 
   /* ── CROQUES ── */
-  { id:89, img:'https://images.unsplash.com/photo-1737513916865-63c7fd3b67a7?auto=format&fit=crop&w=900&q=90', name:'Croque Monsieur', desc:'Sandwich chaud au jambon et fromage', price:3.90, cat:'croques', emoji:'🧀', popular:true },
+  { id:89, img:'images/plateau.jpg', name:'Croque Monsieur', desc:'Sandwich chaud au jambon et fromage', price:3.90, cat:'croques', emoji:'🧀', popular:true },
 
   /* ── SEAUX ── */
-  { id:90, img:'https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=900&q=90', name:'Seau de Frites', desc:'Seau de frites, format à partager',              price:2.60, cat:'seaux', emoji:'🍟' },
-  { id:91, img:'https://images.unsplash.com/photo-1718397172443-48185c6bb4e1?auto=format&fit=crop&w=900&q=90', name:'Seau de Kebab',  desc:'Kebab de viande, seau de format',                 price:9.10, cat:'seaux', emoji:'🪣' },
-  { id:92, img:'https://images.unsplash.com/photo-1657271511865-f610b280dca4?auto=format&fit=crop&w=900&q=90', name:'Seau de Poulet', desc:'Morceaux de poulet servis en seau, à partager',  price:9.10, cat:'seaux', emoji:'🍗' },
+  { id:90, img:'images/plateau.jpg', name:'Seau de Frites', desc:'Seau de frites, format à partager',              price:2.60, cat:'seaux', emoji:'🍟' },
+  { id:91, img:'images/plateau.jpg', name:'Seau de Kebab',  desc:'Kebab de viande, seau de format',                 price:9.10, cat:'seaux', emoji:'🪣' },
+  { id:92, img:'images/plateau.jpg', name:'Seau de Poulet', desc:'Morceaux de poulet servis en seau, à partager',  price:9.10, cat:'seaux', emoji:'🍗' },
 
   /* ── DESSERTS ── */
-  { id:93, img:'https://images.unsplash.com/photo-1639744211487-b27e3551b07c?auto=format&fit=crop&w=900&q=90', name:'Tiramisu',      desc:'Classique italien au café, biscuits imbibés et crème mascarpone, saupoudré de cacao', price:3.90, cat:'desserts', emoji:'🍰', popular:true },
-  { id:94, img:'https://images.unsplash.com/photo-1564645218026-797631447574?auto=format&fit=crop&w=900&q=90', name:'Tarte au Daim', desc:'Tarte gourmande au caramel et éclats de Daim',    price:3.90, cat:'desserts', emoji:'🥧' },
+  { id:93, img:'images/plateau.jpg', name:'Tiramisu',      desc:'Classique italien au café, biscuits imbibés et crème mascarpone, saupoudré de cacao', price:3.90, cat:'desserts', emoji:'🍰', popular:true },
+  { id:94, img:'images/plateau.jpg', name:'Tarte au Daim', desc:'Tarte gourmande au caramel et éclats de Daim',    price:3.90, cat:'desserts', emoji:'🥧' },
 
   /* ── BOISSONS ── */
-  { id:95, img:'https://images.unsplash.com/photo-1595026798575-cac0f1be4be6?auto=format&fit=crop&w=900&q=90', name:'Pepsi',              desc:'Boisson rafraîchissante 33cl',  price:1.95, cat:'boissons', emoji:'🥤' },
-  { id:96, img:'https://images.unsplash.com/photo-1544418749-94b09b11e93f?auto=format&fit=crop&w=900&q=90', name:'Thé Glacé Lipton',   desc:'Thé glacé rafraîchissant 33cl', price:1.95, cat:'boissons', emoji:'🍑' },
-  { id:97, img:'https://images.unsplash.com/photo-1581098365948-6a5a912b7a49?auto=format&fit=crop&w=900&q=90', name:'Coca-Cola',          desc:'Boisson rafraîchissante classique 33cl', price:1.95, cat:'boissons', emoji:'🥤' },
+  { id:95, img:'images/boissons.jpg', name:'Pepsi',              desc:'Boisson rafraîchissante 33cl',  price:1.95, cat:'boissons', emoji:'🥤' },
+  { id:96, img:'images/boissons.jpg', name:'Thé Glacé Lipton',   desc:'Thé glacé rafraîchissant 33cl', price:1.95, cat:'boissons', emoji:'🍑' },
+  { id:97, img:'images/boissons.jpg', name:'Coca-Cola',          desc:'Boisson rafraîchissante classique 33cl', price:1.95, cat:'boissons', emoji:'🥤' },
 ];
 
 /* ═══════════════════════════════════════════════════
@@ -1220,25 +1167,25 @@ const PRODUCTS = [
    cartes du menu ET dans le panier
 ═══════════════════════════════════════════════════ */
 const CATEGORY_PHOTOS = {
-  'menus-sandwiches':  'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=800&q=90',
-  'menus-paninis':     'https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=800&q=90',
-  'menus-tacos':       'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=90',
-  'menus-burgers':     'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=90',
-  'menus-pizza-turque':'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=90',
-  'menus-croques':     'https://images.unsplash.com/photo-1528736235302-52922df5c122?auto=format&fit=crop&w=800&q=90',
-  'tex-mex':           'https://images.unsplash.com/photo-1576107232684-1279f98b4fb1?auto=format&fit=crop&w=800&q=90',
-  'salades':           'https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=800&q=90',
-  'pizzas':            'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=90',
-  'tacos':             'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=90',
-  'burgers':           'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=90',
-  'sandwiches':        'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=800&q=90',
-  'assiettes':         'https://images.unsplash.com/photo-1544025162-d76538580dc5?auto=format&fit=crop&w=800&q=90',
-  'pizza-turque':      'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=90',
-  'paninis':           'https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=800&q=90',
-  'croques':           'https://images.unsplash.com/photo-1528736235302-52922df5c122?auto=format&fit=crop&w=800&q=90',
-  'seaux':             'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=800&q=90',
-  'desserts':          'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=90',
-  'boissons':          'https://images.unsplash.com/photo-1614028674026-a65e31bfd27c?auto=format&fit=crop&w=800&q=90',
+  'menus-sandwiches':  'images/plateau.jpg',
+  'menus-paninis':     'images/plateau.jpg',
+  'menus-tacos':       'images/plateau.jpg',
+  'menus-burgers':     'images/plateau.jpg',
+  'menus-pizza-turque':'images/plateau.jpg',
+  'menus-croques':     'images/plateau.jpg',
+  'tex-mex':           'images/plateau.jpg',
+  'salades':           'images/plateau.jpg',
+  'pizzas':            'images/plateau.jpg',
+  'tacos':             'images/plateau.jpg',
+  'burgers':           'images/plateau.jpg',
+  'sandwiches':        'images/plateau.jpg',
+  'assiettes':         'images/plateau.jpg',
+  'pizza-turque':      'images/plateau.jpg',
+  'paninis':           'images/plateau.jpg',
+  'croques':           'images/plateau.jpg',
+  'seaux':             'images/plateau.jpg',
+  'desserts':          'images/plateau.jpg',
+  'boissons':          'images/boissons.jpg',
 };
 
 /* ═══════════════════════════════════════════════════
@@ -1839,7 +1786,7 @@ function renderProducts() {
     card.querySelector('.product-add-btn').addEventListener('click', e => { e.stopPropagation(); handleAdd(); });
     card.addEventListener('click', handleAdd);
     card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleAdd(); } });
-    if (window.innerWidth >= 1024 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) init3DTilt(card);
+    if (window.matchMedia('(hover: hover)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) init3DTilt(card);
   });
 }
 
@@ -1899,6 +1846,21 @@ function init3DTilt(card) {
     setTimeout(() => card.style.transition = '', 500);
   });
   card.addEventListener('mouseenter', () => { card.style.transition = 'transform .08s ease'; });
+}
+
+/* Tilt 3D piloté par le curseur virtuel (mobile) : incline la carte selon la
+   position verticale du point central par rapport au centre de la carte,
+   pour un effet cohérent même sans mousemove réel. */
+function apply3DTiltFromPoint(card, py) {
+  const rect = card.getBoundingClientRect();
+  const cy   = rect.top + rect.height / 2;
+  const dy   = (py - cy) / (rect.height / 2);
+  card.style.transition = 'transform .18s ease-out';
+  card.style.transform  = `perspective(600px) rotateX(${(-dy * 4).toFixed(2)}deg) translateZ(4px)`;
+}
+function resetTiltStyle(card) {
+  card.style.transition = 'transform .4s ease';
+  card.style.transform  = '';
 }
 
 /* ═══════════════════════════════════════════════════
@@ -2363,25 +2325,25 @@ function renderPopulaires() {
   const grid = document.getElementById('populairesGrid');
   if (!grid) return;
   const PHOTOS = {
-    'menus-sandwiches':  'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=1000&q=92',
-    'menus-paninis':     'https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=1000&q=92',
-    'menus-tacos':       'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1000&q=92',
-    'menus-burgers':     'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=92',
-    'menus-pizza-turque':'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=92',
-    'menus-croques':     'https://images.unsplash.com/photo-1528736235302-52922df5c122?auto=format&fit=crop&w=1000&q=92',
-    'tex-mex':           'https://images.unsplash.com/photo-1576107232684-1279f98b4fb1?auto=format&fit=crop&w=1000&q=92',
-    'salades':           'https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=1000&q=92',
-    'pizzas':            'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=92',
-    'tacos':             'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1000&q=92',
-    'burgers':           'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=92',
-    'sandwiches':        'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=1000&q=92',
-    'assiettes':         'https://images.unsplash.com/photo-1544025162-d76538580dc5?auto=format&fit=crop&w=1000&q=92',
-    'pizza-turque':      'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=92',
-    'paninis':           'https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=1000&q=92',
-    'croques':           'https://images.unsplash.com/photo-1528736235302-52922df5c122?auto=format&fit=crop&w=1000&q=92',
-    'seaux':             'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=1000&q=92',
-    'desserts':          'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1000&q=92',
-    'boissons':          'https://images.unsplash.com/photo-1614028674026-a65e31bfd27c?auto=format&fit=crop&w=1000&q=92',
+    'menus-sandwiches':  'images/plateau.jpg',
+    'menus-paninis':     'images/plateau.jpg',
+    'menus-tacos':       'images/plateau.jpg',
+    'menus-burgers':     'images/plateau.jpg',
+    'menus-pizza-turque':'images/plateau.jpg',
+    'menus-croques':     'images/plateau.jpg',
+    'tex-mex':           'images/plateau.jpg',
+    'salades':           'images/plateau.jpg',
+    'pizzas':            'images/plateau.jpg',
+    'tacos':             'images/plateau.jpg',
+    'burgers':           'images/plateau.jpg',
+    'sandwiches':        'images/plateau.jpg',
+    'assiettes':         'images/plateau.jpg',
+    'pizza-turque':      'images/plateau.jpg',
+    'paninis':           'images/plateau.jpg',
+    'croques':           'images/plateau.jpg',
+    'seaux':             'images/plateau.jpg',
+    'desserts':          'images/plateau.jpg',
+    'boissons':          'images/boissons.jpg',
   };
   const pops = PRODUCTS.filter(p => p.popular).slice(0, 8);
   grid.innerHTML = pops.map(p => {
@@ -2413,6 +2375,84 @@ function renderPopulaires() {
     card.addEventListener('click', handler);
     card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); } });
   });
+}
+
+/* ═══════════════════════════════════════════════════
+   CURSEUR VIRTUEL CENTRAL (mobile) — invisible, fixé au centre
+   de l'écran. À chaque scroll, on regarde ce qui se trouve sous ce
+   point et on lui applique .mobile-hover (équivalent :hover) + le
+   tilt 3D, pour retrouver sur tactile les animations pensées pour
+   la souris — sans rien afficher à l'écran ni gêner le tactile.
+═══════════════════════════════════════════════════ */
+function initVirtualCursor() {
+  // Uniquement utile là où il n'y a pas de vrai hover (tactile)
+  if (window.matchMedia('(hover: hover)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const HOVERABLE = '.btn, .hero-pill, .hp, .trust-item, .stat-item, .pop-card, .pop-add, ' +
+    '.search-clear, .filter-btn, .product-card, .product-add-btn, .review-card, ' +
+    '.classique-card, .location-card, .location-phone, .location-map, .faq-q, ' +
+    '.footer-meta a, .fab, .config-option-label, .configurator-close, .a-link, .a-close, ' +
+    '.logo, .nav-link, .hamburger, .mobile-nav-link, .mobile-phone-link, .cart-close, ' +
+    '.cart-item, .qty-btn, .order-mode-label, .cart-delivery-note-link, .food-ticker-track, ' +
+    '.reviews-marquee-track';
+
+  const TILTABLE = '.product-card, .pop-card, .classique-card';
+
+  let currentEl = null;
+  let currentTiltEl = null;
+  let ticking = false;
+  let centerY = 0;
+
+  function updateCenterY() {
+    centerY = window.innerHeight / 2;
+  }
+
+  function findElementAtCenter() {
+    const x = window.innerWidth / 2;
+    const y = centerY;
+    // elementsFromPoint (pluriel) renvoie TOUTE la pile d'empilement à ce point,
+    // du dessus vers le dessous. elementFromPoint (singulier) ne renvoie que le
+    // calque le plus haut — souvent un simple overlay décoratif (scrim, glow,
+    // grain) sans le moindre rapport avec le hover, ce qui masquait la vraie
+    // carte en dessous. On parcourt la pile jusqu'à trouver un élément concerné.
+    const stack = document.elementsFromPoint(x, y);
+    for (const el of stack) {
+      const hoverable = el.closest(HOVERABLE);
+      if (hoverable) return hoverable;
+    }
+    return null;
+  }
+
+  function update() {
+    ticking = false;
+    const target = findElementAtCenter();
+
+    if (target !== currentEl) {
+      if (currentEl) currentEl.classList.remove('mobile-hover');
+      if (target) target.classList.add('mobile-hover');
+      currentEl = target;
+    }
+
+    // Tilt 3D : cherche une carte tiltable au centre (peut différer de currentEl
+    // si le point survole un enfant comme .product-add-btn)
+    const tiltTarget = target ? target.closest(TILTABLE) : null;
+    if (tiltTarget !== currentTiltEl) {
+      if (currentTiltEl) resetTiltStyle(currentTiltEl);
+      currentTiltEl = tiltTarget;
+    }
+    if (currentTiltEl) apply3DTiltFromPoint(currentTiltEl, centerY);
+  }
+
+  function onScroll() {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }
+
+  updateCenterY();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', () => { updateCenterY(); onScroll(); }, { passive: true });
+  // Premier passage une fois le layout stable
+  requestAnimationFrame(update);
 }
 
 /* ═══ MAIN INIT ═══
@@ -2454,12 +2494,15 @@ document.addEventListener('DOMContentLoaded', () => {
   safeInit(initFab, 'initFab');
   safeInit(initFaq, 'initFaq');
 
-  /* Tilt 3D — étendu aux cartes populaires et classiques (produits déjà couverts via init3DTilt par carte) */
+  /* Tilt 3D souris — étendu aux cartes populaires et classiques (produits déjà couverts via init3DTilt par carte) */
   safeInit(() => {
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.innerWidth >= 1024) {
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.matchMedia('(hover: hover)').matches) {
       document.querySelectorAll('.pop-card, .classique-card').forEach(init3DTilt);
     }
   }, 'tilt3D (pop/classique)');
+
+  /* Curseur virtuel central — réactive hover + tilt 3D au scroll sur mobile/tactile */
+  safeInit(initVirtualCursor, 'initVirtualCursor');
 
   safeInit(initKeyboard, 'initKeyboard');
 });
