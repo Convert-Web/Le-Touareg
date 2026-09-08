@@ -985,7 +985,7 @@ const REVIEWS = [
 /* ═══════════════════════════════════════════════════
    CONFIGURATEUR — Règles et options
 ═══════════════════════════════════════════════════ */
-const VIANDES = ['Kebab','Viande hachée','Poulet mariné','Merguez','Kefta','Brochette d\'agneau'];
+const VIANDES = ['Viande hachée','Chicken','Steak hachée','Tenders','Nuggets','Cordon bleu','Merguez'];
 const SAUCES  = ['Fromagère maison','Sauce blanche','Harissa','Ketchup','Algérienne','Samouraï','Cocktail'];
 const BOISSONS = ['Coca-Cola','Pepsi','Thé Glacé Lipton','Sans boisson'];
 const SUPPLEMENTS = [
@@ -995,6 +995,11 @@ const SUPPLEMENTS = [
   { name:'Lardons',    price:1.20 },
   { name:'Champignons', price:1.00 },
 ];
+/* Option "gratiner" réservée aux tacos (config 'tacos-l' / 'tacos-xl') : 1 choix max, gérée
+   comme un supplément (même clé 'supplement' côté panier/total) mais affichée à part. */
+const GRATIN = { name:'Gratinez votre tacos', price:1.95 };
+/* Table de recherche prix unique (suppléments classiques + gratin), utilisée pour tout calcul de total. */
+const ALL_SUPPLEMENTS = [...SUPPLEMENTS, GRATIN];
 /* viandes:0 = recette fixe (le nom du plat impose déjà la viande), pas de bloc "viande" affiché.
    Le choix de boisson est décidé produit par produit via product.menu:true (voir plus bas),
    pas ici : une même règle (ex. 'sandwich') est partagée par des Menus et des produits seuls,
@@ -1240,7 +1245,7 @@ function loadCartFromStorage() {
       const product = PRODUCTS.find(p => p.id === saved.productId);
       if (!product || !saved.qty) return; // produit retiré du menu depuis, ou quantité invalide → on ignore proprement
       const itemPrice = product.price + ((saved.config?.supplements || []).reduce((s, name) => {
-        const sup = SUPPLEMENTS.find(x => x.name === name);
+        const sup = ALL_SUPPLEMENTS.find(x => x.name === name);
         return s + (sup ? sup.price : 0);
       }, 0));
       cart[key] = {
@@ -1337,7 +1342,7 @@ function spawnConfetti(originEl) {
 function addToCart(product, config = null) {
   const key = cartKey(product.id, config);
   const itemPrice = product.price + ((config?.supplements || []).reduce((s, name) => {
-    const sup = SUPPLEMENTS.find(x => x.name === name);
+    const sup = ALL_SUPPLEMENTS.find(x => x.name === name);
     return s + (sup ? sup.price : 0);
   }, 0));
   if (cart[key]) {
@@ -1580,6 +1585,25 @@ function openConfigurator(product) {
       </div>`;
   }
 
+  /* Gratin — réservé aux tacos (L/XL), 1 choix maximum */
+  const isTacos = product.config === 'tacos-l' || product.config === 'tacos-xl';
+  if (isTacos) {
+    html += `
+      <div class="config-section">
+        <p class="config-section-title">
+          Gratinez votre tacos
+          <span>(Choisissez-en 1 max)</span>
+          <span class="config-viande-count" id="gratinCount">0/1</span>
+        </p>
+        <div class="config-options" id="gratinOptions">
+          <label class="config-option" id="gratinOpt_0">
+            <input type="checkbox" name="gratin" value="${GRATIN.name}" />
+            <span class="config-option-label">${GRATIN.name} <strong>+${formatPrice(GRATIN.price)}</strong></span>
+          </label>
+        </div>
+      </div>`;
+  }
+
   /* Supplements (not for mixte) */
   if (product.config !== 'mixte') {
     html += `
@@ -1630,11 +1654,19 @@ function openConfigurator(product) {
   const sauceInputs = body.querySelectorAll('input[name="sauce"]');
   if (sauceInputs.length) setupCappedGroup(sauceInputs, $('sauceCount'), 2);
 
+  /* Gratin : 1 maximum, uniquement pour les tacos (bloc masqué plus haut sinon) */
+  const gratinInputs = body.querySelectorAll('input[name="gratin"]');
+  if (gratinInputs.length) setupCappedGroup(gratinInputs, $('gratinCount'), 1);
+
   body.querySelectorAll('input[name="boisson"]').forEach(inp => {
     inp.addEventListener('change', updateConfigTotal);
   });
 
   body.querySelectorAll('input[name="supplement"]').forEach(inp => {
+    inp.addEventListener('change', updateConfigTotal);
+  });
+
+  body.querySelectorAll('input[name="gratin"]').forEach(inp => {
     inp.addEventListener('change', updateConfigTotal);
   });
 
@@ -1647,9 +1679,9 @@ function openConfigurator(product) {
 
 function updateConfigTotal() {
   if (!configuratorProduct) return;
-  const supInputs = $q('#configuratorBody')?.querySelectorAll('input[name="supplement"]:checked') || [];
+  const supInputs = $q('#configuratorBody')?.querySelectorAll('input[name="supplement"]:checked, input[name="gratin"]:checked') || [];
   const supExtra  = [...supInputs].reduce((s, inp) => {
-    const sup = SUPPLEMENTS.find(x => x.name === inp.value);
+    const sup = ALL_SUPPLEMENTS.find(x => x.name === inp.value);
     return s + (sup ? sup.price : 0);
   }, 0);
   const total = configuratorProduct.price + supExtra;
@@ -1666,7 +1698,7 @@ function confirmConfigurator() {
   const boisson = configuratorProduct.menu
     ? ($q('#configuratorBody input[name="boisson"]:checked')?.value || BOISSONS[0])
     : null;
-  const sups    = [...($q('#configuratorBody')?.querySelectorAll('input[name="supplement"]:checked') || [])].map(i => i.value);
+  const sups    = [...($q('#configuratorBody')?.querySelectorAll('input[name="supplement"]:checked, input[name="gratin"]:checked') || [])].map(i => i.value);
 
   if (rule.viandes > 0 && viandes.length !== rule.viandes) {
     showToast(`⚠️ Sélectionnez ${rule.viandes} viande${rule.viandes > 1 ? 's' : ''}`);
