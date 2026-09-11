@@ -971,15 +971,15 @@ let announceClosedThisSession = false;
 const CLOSING_HOUR = 23;
 
 /* ═══════════════════════════════════════════════════
-   AVIS CLIENTS (avis réels Google / PagesJaunes)
+   AVIS CLIENTS (avis réels Google)
 ═══════════════════════════════════════════════════ */
 const REVIEWS = [
-  { name:'Wil Dora',   initial:'W', color:'#BF1120', stars:5, date:'Il y a 5 mois', source:'Google',
+  { name:'Wil Dora',   initial:'W', color:'#BF1120', stars:5, date:'Il y a 7 mois', source:'Google',
     text:'Ce n\'est pas la première fois que je viens ici, et je suis toujours satisfait, absolument tout est au top du top ! Je recommande fortement, surtout le tacos.' },
-  { name:'PowerMan',   initial:'P', color:'#0891B2', stars:5, date:'Il y a 10 mois', source:'Google',
+  { name:'PowerMan',   initial:'P', color:'#0891B2', stars:5, date:'Il y a un an', source:'Google',
     text:'Endroit formidable ! Les kebabs et tacos sont toujours frais, savoureux et très délicieux. Le service est rapide, pas besoin d\'attendre longtemps.' },
-  { name:'Auteur PagesJaunes', initial:'A', color:'#059669', stars:4, date:'Il y a 9 ans', source:'PagesJaunes',
-    text:'Très bon rapport qualité prix. Pour 5 sandwichs avec frites et 3 boissons, j\'en ai eu pour 24€, c\'est plus que raisonnable. Préparation très rapide et bon accueil.' },
+  { name:'Daniel le Tracteur', initial:'D', color:'#059669', stars:5, date:'Il y a 2 ans', source:'Google',
+    text:'Les gérants sont sympas, les tacos sont vraiment délicieux, et l\'ambiance est calme.' },
 ];
 
 /* ═══════════════════════════════════════════════════
@@ -988,18 +988,11 @@ const REVIEWS = [
 const VIANDES = ['Viande hachée','Chicken','Steak hachée','Tenders','Nuggets','Cordon bleu','Merguez'];
 const SAUCES  = ['Fromagère maison','Sauce blanche','Harissa','Ketchup','Algérienne','Samouraï','Cocktail'];
 const BOISSONS = ['Coca-Cola','Pepsi','Thé Glacé Lipton','Sans boisson'];
-const SUPPLEMENTS = [
-  { name:'Emmental',   price:0.80 },
-  { name:'Oeuf',       price:0.80 },
-  { name:'Fromage râpé', price:0.80 },
-  { name:'Lardons',    price:1.20 },
-  { name:'Champignons', price:1.00 },
-];
 /* Option "gratiner" réservée aux tacos (config 'tacos-l' / 'tacos-xl') : 1 choix max, gérée
    comme un supplément (même clé 'supplement' côté panier/total) mais affichée à part. */
 const GRATIN = { name:'Gratinez votre tacos', price:1.95 };
-/* Table de recherche prix unique (suppléments classiques + gratin), utilisée pour tout calcul de total. */
-const ALL_SUPPLEMENTS = [...SUPPLEMENTS, GRATIN];
+/* Table de recherche prix (actuellement : gratin uniquement), utilisée pour tout calcul de total. */
+const ALL_SUPPLEMENTS = [GRATIN];
 /* viandes:0 = recette fixe (le nom du plat impose déjà la viande), pas de bloc "viande" affiché.
    Le choix de boisson est décidé produit par produit via product.menu:true (voir plus bas),
    pas ici : une même règle (ex. 'sandwich') est partagée par des Menus et des produits seuls,
@@ -1093,7 +1086,7 @@ const PRODUCTS = [
 
   /* ── TEX-MEX ── */
   { id:35, img:IMG_PLATEAU, name:'Pépites',           desc:'3 pièces',   price:2.60, cat:'tex-mex', emoji:'🍗' },
-  { id:36, name:'Appels d\'offres',  desc:'3 pièces',   price:5.20, cat:'tex-mex', emoji:'🌶️' },
+  { id:36, name:'Tenders',           desc:'3 pièces',   price:5.20, cat:'tex-mex', emoji:'🍗' },
   { id:37, name:'Camembert',         desc:'3 pièces',   price:2.60, cat:'tex-mex', emoji:'🧀', popular:true },
   { id:38, name:'Jalapenos',         desc:'3 pièces',   price:3.90, cat:'tex-mex', emoji:'🌶️' },
   { id:39, name:'Rondelles d\'Oignon',desc:'3 pièces',  price:2.60, cat:'tex-mex', emoji:'🧅' },
@@ -1106,18 +1099,18 @@ const PRODUCTS = [
   /* ── PIZZAS (taille senior) ── */
   { id:43, img:IMG_PLATEAU, name:'Pizza Margherita',   desc:'Base au choix, fromage et oignons — taille senior',                          price:9.75, cat:'pizzas', emoji:'🍕', popular:true },
   { id:44, img:IMG_PLATEAU, name:'Pizza Touareg',      desc:'Base au choix, fromage, poulet, sauce fromagère et pommes de terre — taille senior', price:9.75, cat:'pizzas', emoji:'🍕' },
-  { id:45, img:IMG_PLATEAU, name:'Pizza Batteuse',     desc:'Base au choix, fromage, viande hachée, champignons et œuf — taille senior', price:9.75, cat:'pizzas', emoji:'🍕' },
+  { id:45, img:IMG_PLATEAU, name:'Pizza Combine',      desc:'Base au choix, fromage, viande hachée, champignons et œuf — taille senior', price:9.75, cat:'pizzas', emoji:'🍕' },
   { id:46, img:IMG_PLATEAU, name:'Pizza Orientale',    desc:'Base au choix, fromage, oignons, olives, merguez et œuf — taille senior',   price:9.75, cat:'pizzas', emoji:'🍕' },
   { id:47, img:IMG_PLATEAU, name:'Pizza Saisons',      desc:'Base au choix, fromage, jambon dinde, olives, poivrons et champignons — taille senior', price:9.75, cat:'pizzas', emoji:'🍕' },
   { id:48, img:IMG_PLATEAU, name:'Pizza Végétarienne', desc:'Base au choix, fromage, olives, poivrons, champignons et oignons — taille senior', price:9.75, cat:'pizzas', emoji:'🍕' },
   { id:49, img:IMG_PLATEAU, name:'Pizza Chèvre Miel',  desc:'Base au choix, fromage, chèvre et miel — taille senior',                    price:9.75, cat:'pizzas', emoji:'🍕', popular:true },
-  { id:50, img:IMG_PLATEAU, name:'Pizza au Poulet',    desc:'Base au choix, fromage, poulet et pommes de terre — taille senior',         price:9.75, cat:'pizzas', emoji:'🍕' },
+  { id:50, img:IMG_PLATEAU, name:'Pizza Chicken',      desc:'Base au choix, fromage, chicken et pommes de terre — taille senior',        price:9.75, cat:'pizzas', emoji:'🍕' },
   { id:51, img:IMG_PLATEAU, name:'Pizza au Saumon',    desc:'Base au choix, fromage, saumon et pommes de terre — taille senior',        price:9.75, cat:'pizzas', emoji:'🍕' },
   { id:52, img:IMG_PLATEAU, name:'Pizza Thon',         desc:'Base au choix, fromage, thon et olives — taille senior',                    price:9.75, cat:'pizzas', emoji:'🍕' },
   { id:53, img:IMG_PLATEAU, name:'Pizza 3 Viandes',    desc:'Base et 3 viandes au choix et fromage — taille senior',                    price:9.75, cat:'pizzas', emoji:'🍕', popular:true, config:'pizza-3v' },
 
   /* ── TACOS SEULS ── */
-  { id:54, name:'Tacos L',  desc:'1 viande au choix, sauce maison',            price:9.10,  cat:'tacos', emoji:'🌮', config:'tacos-l' },
+  { id:54, name:'Tacos L',  desc:'1 viande au choix, sauce fromagère maison',  price:9.10,  cat:'tacos', emoji:'🌮', config:'tacos-l' },
   { id:55, name:'Tacos XL', desc:'2 viandes au choix, sauce fromagère maison', price:10.40, cat:'tacos', emoji:'🌮', config:'tacos-xl', popular:true },
 
   /* ── BURGERS SEULS ── */
@@ -1604,24 +1597,6 @@ function openConfigurator(product) {
       </div>`;
   }
 
-  /* Supplements (not for mixte) */
-  if (product.config !== 'mixte') {
-    html += `
-      <div class="config-section">
-        <p class="config-section-title">Suppléments <span>(optionnels)</span></p>
-        <div class="config-supplements">
-          ${SUPPLEMENTS.map(sup => `
-            <label class="config-supplement">
-              <input type="checkbox" name="supplement" value="${sup.name}" />
-              <span class="config-supplement-label">
-                <span class="config-supplement-name">${sup.name}</span>
-                <span class="config-supplement-price">+${formatPrice(sup.price)}</span>
-              </span>
-            </label>`).join('')}
-        </div>
-      </div>`;
-  }
-
   if (body) body.innerHTML = html;
 
   /* Gestion sélection à plafond : utilisée pour "viande" (max variable) et "sauce" (max 2) */
@@ -1662,10 +1637,6 @@ function openConfigurator(product) {
     inp.addEventListener('change', updateConfigTotal);
   });
 
-  body.querySelectorAll('input[name="supplement"]').forEach(inp => {
-    inp.addEventListener('change', updateConfigTotal);
-  });
-
   body.querySelectorAll('input[name="gratin"]').forEach(inp => {
     inp.addEventListener('change', updateConfigTotal);
   });
@@ -1679,7 +1650,7 @@ function openConfigurator(product) {
 
 function updateConfigTotal() {
   if (!configuratorProduct) return;
-  const supInputs = $q('#configuratorBody')?.querySelectorAll('input[name="supplement"]:checked, input[name="gratin"]:checked') || [];
+  const supInputs = $q('#configuratorBody')?.querySelectorAll('input[name="gratin"]:checked') || [];
   const supExtra  = [...supInputs].reduce((s, inp) => {
     const sup = ALL_SUPPLEMENTS.find(x => x.name === inp.value);
     return s + (sup ? sup.price : 0);
@@ -1698,7 +1669,7 @@ function confirmConfigurator() {
   const boisson = configuratorProduct.menu
     ? ($q('#configuratorBody input[name="boisson"]:checked')?.value || BOISSONS[0])
     : null;
-  const sups    = [...($q('#configuratorBody')?.querySelectorAll('input[name="supplement"]:checked, input[name="gratin"]:checked') || [])].map(i => i.value);
+  const sups    = [...($q('#configuratorBody')?.querySelectorAll('input[name="gratin"]:checked') || [])].map(i => i.value);
 
   if (rule.viandes > 0 && viandes.length !== rule.viandes) {
     showToast(`⚠️ Sélectionnez ${rule.viandes} viande${rule.viandes > 1 ? 's' : ''}`);
