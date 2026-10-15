@@ -101,9 +101,9 @@ const MAX_QTY = 15;         // quantité max dans la fiche d'un plat
 const MAX_LINE_QTY = 30;    // quantité max d'une ligne du panier
 
 /* Photos disponibles (img/<clé>-<largeur>.webp) et couleur des tuiles illustrées par catégorie */
-const IMGS = { kebab:[240, 480], tacos:[240, 480], burger:[240, 480], fries:[240], nuggets:[240], lipton:[240], pepsi:[240], coca:[240] };
-const TILE_BG = { sandwichs:'neon', tacos:'orange', burgers:'orange', pizzas:'blue', paninis:'blue', assiettes:'orange', buckets:'blue', texmex:'blue', salades:'neon', desserts:'blue', boissons:'neon' };
-const CAT_VISUAL = { sandwichs:{ img:'kebab' }, tacos:{ img:'tacos' }, burgers:{ img:'burger' }, pizzas:{ tile:'pizza' }, paninis:{ tile:'panini' }, assiettes:{ tile:'plate' },
+const IMGS = { kebab:[240, 480], tacos:[240, 480], burger:[240, 480], fries:[240], nuggets:[240], pizza:[240], lipton:[240], pepsi:[240], coca:[240] };
+const TILE_BG = { sandwichs:'saffron', tacos:'ember', burgers:'ember', pizzas:'chili', paninis:'chili', assiettes:'ember', buckets:'chili', texmex:'chili', salades:'saffron', desserts:'chili', boissons:'saffron' };
+const CAT_VISUAL = { sandwichs:{ img:'kebab' }, tacos:{ img:'tacos' }, burgers:{ img:'burger' }, pizzas:{ img:'pizza' }, paninis:{ tile:'panini' }, assiettes:{ tile:'plate' },
                      buckets:{ img:'fries' }, texmex:{ img:'nuggets' }, salades:{ tile:'salad' }, desserts:{ tile:'dessert' }, boissons:{ img:'coca' } };
 const CAT_NOTES = { pizzas:'Taille sénior' };
 const KEYS = SITE.keys;
@@ -156,13 +156,13 @@ let favs = [];
 /* =====================================================================
    Tuiles illustrées (pour les plats sans photo)
    ===================================================================== */
-const TILE_SVG = (inner) => `<svg viewBox="0 0 100 100" fill="none" stroke="#000" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" focusable="false">${inner}</svg>`;
+const TILE_SVG = (inner) => `<svg viewBox="0 0 100 100" fill="none" stroke="#2a1409" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" focusable="false">${inner}</svg>`;
 const TILE_SCALE = (k, inner) => `<g transform="translate(50 52) scale(${k}) translate(-50 -52)">${inner}</g>`;
 const TILES = {
   wrap: TILE_SVG(TILE_SCALE(1.15, `<g transform="rotate(16 50 52)">
     <path d="M34 30 L36 78 Q36 90 48 90 H52 Q64 90 64 78 L66 30 Z" fill="#f6c36b"/>
     <path d="M35 56 H65 L64 78 Q64 90 52 90 H48 Q36 90 36 78 Z" fill="#fff"/>
-    <path d="M35.6 68 H64.4" stroke="#2236f5" stroke-width="5"/>
+    <path d="M35.6 68 H64.4" stroke="#d93a1c" stroke-width="5"/>
     <ellipse cx="50" cy="30" rx="16.5" ry="6.5" fill="#fff4d6"/>
     <path d="M36 28 q2 -10 7 -5 q3 -9 8 -3 q5 -8 9 0 q5 -3 5 6 q-8 6 -29 2 z" fill="#6fd94b"/>
     <circle cx="44" cy="25" r="4.6" fill="#ff4b3e"/>
@@ -222,7 +222,7 @@ const TILES = {
     <path d="M24 54 Q50 32 76 54 Q50 72 24 54 Z" fill="#ff7a4a"/>
     <circle cx="38" cy="53" r="3.4" fill="#6fd94b" stroke-width="2.4"/><circle cx="52" cy="48" r="3.4" fill="#6fd94b" stroke-width="2.4"/><circle cx="62" cy="57" r="3.4" fill="#6fd94b" stroke-width="2.4"/>
     <path d="M44 60 l8 -2" stroke="#7a3f22" stroke-width="4"/>`)),
-  can: TILE_SVG(`<rect x="30" y="20" width="40" height="66" rx="8" fill="#2236f5"/>
+  can: TILE_SVG(`<rect x="30" y="20" width="40" height="66" rx="8" fill="#d93a1c"/>
     <rect x="30" y="40" width="40" height="22" fill="#fff"/>
     <ellipse cx="50" cy="20" rx="20" ry="5.5" fill="#d9d3c2"/>`)
 };
@@ -366,7 +366,7 @@ function imgHTML(key, sizes) {
 }
 const tileHTML = (name, bg) => `<span class="tile t-${bg}">${TILES[name] || TILES.wrap}</span>`;
 /* Rang de chaque plat dans sa catégorie : sert à alterner les couleurs des tuiles illustrées */
-const TILE_SEQ = ['neon', 'orange', 'blue'];
+const TILE_SEQ = ['saffron', 'ember', 'chili'];
 const CAT_RANK = (() => { const n = {}, r = {}; PRODUCTS.forEach(p => { n[p.cat] = n[p.cat] || 0; r[p.id] = n[p.cat]++; }); return r; })();
 const tileBg = (p) => TILE_SEQ[(Math.max(0, TILE_SEQ.indexOf(TILE_BG[p.cat])) + (CAT_RANK[p.id] || 0)) % TILE_SEQ.length];
 function visualHTML(p, sizes = SIZES_CARD) {
@@ -376,7 +376,7 @@ function visualHTML(p, sizes = SIZES_CARD) {
 function catVisualHTML(catId) {
   const v = CAT_VISUAL[catId] || {};
   if (v.img) return imgHTML(v.img, '48px');
-  return tileHTML(v.tile || 'wrap', TILE_BG[catId] || 'neon');
+  return tileHTML(v.tile || 'wrap', TILE_BG[catId] || 'saffron');
 }
 
 function cardHTML(p, o = {}) {

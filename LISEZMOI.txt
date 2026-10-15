@@ -10,11 +10,23 @@ CONTENU DU DOSSIER
   style.css    Le design (couleurs, polices, mise en page)
   app.js       La carte (plats et prix), le panier, la commande WhatsApp
   img/         Photos, icônes, image de partage
-  fonts/       Polices, hébergées avec le site (rien n'est chargé ailleurs)
+  fonts/       Polices, hébergées avec le site (rien n'est chargé ailleurs).
+               Utilisées : Lilita One (titres), DM Sans (texte), Sedgwick Ave
+               Display (petites notes à la main). Le fichier dela-gothic-one
+               de l'ancienne version peut être supprimé.
 
 Rien à installer. Pour tester sur ton ordinateur : double-clic sur index.html.
 Pour modifier : ouvrir les fichiers avec un éditeur de texte (Bloc-notes,
 VS Code…). Ne jamais les ouvrir avec Word.
+
+
+0. LES COULEURS
+---------------
+
+  Tout le design est dans style.css. Les couleurs sont regroupées tout en haut,
+  dans le bloc « :root » : --night (fond brun nuit), --cream (crème), --saffron
+  (safran, prix et boutons), --ember (braise), --chili (piment). Changer une
+  valeur change tout le site.
 
 
 1. METTRE LE SITE EN LIGNE (GitHub Pages, gratuit)
@@ -136,9 +148,10 @@ VS Code…). Ne jamais les ouvrir avec Word.
 
   Fichiers du dossier img/ (format WebP, léger ; conversion gratuite sur
   squoosh.app) :
-    kebab, tacos, burger, fries, nuggets, lipton, pepsi, coca
+    kebab, tacos, burger, fries, nuggets, pizza, lipton, pepsi, coca
         -240.webp  carré 240 x 240   (version mobile)
         -480.webp  carré 480 x 480   (version nette, pour kebab/tacos/burger)
+        (pizza : seulement -240.webp, c'est l'image de la catégorie Pizzas)
     plateau-840.webp   840 x 560, photo principale de l'accueil
     og-image.jpg       1200 x 630, aperçu quand on partage le lien
     favicon.svg, favicon-32.png, apple-touch-icon.png   icônes du site
